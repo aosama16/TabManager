@@ -1,0 +1,14 @@
+body {
+    height: 500px;
+    width: 700px;
+}
+.favicon {
+    width: 15px;
+    margin-right: 5px;
+}
+ul {
+    list-style: none;
+}
+div {
+    width: 100%;
+}

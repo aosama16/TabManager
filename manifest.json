@@ -3,8 +3,12 @@
     "version": "0.1",
     "description": "Manage your tabs and get work done",
     "manifest_version": 2,
-    "permissions": ["tabs"],
+    "permissions": ["storage", "tabs"],
     "browser_action": {
         "default_popup": "popup.html"
-    }
+    },
+    "web_accessible_resources": [
+        "images/*.png",
+        "sessions.html"
+    ]
 }
