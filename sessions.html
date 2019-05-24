@@ -9,6 +9,17 @@
 </head>
 <body>
     <h1>Saved Sessions</h1>
+    <div id='app'>
+        <div v-for="group in state.groups" v-bind:data-id=group.id>
+            <h2>{{group.title}}</h2>
+            <div v-for="tab in group.tabs" v-bind:data-id=tab.id>
+                <img v-bind:src="getFavicon(tab)">
+                <a v-bind:href="tab.url">{{tab.title}}</a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="vue.js"></script> <!-- development version, includes helpful console warnings -->
     <script src="sessions.js"></script>
     <div id='sessions'></div>
 </body>

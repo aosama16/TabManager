@@ -1,39 +1,33 @@
-window.addEventListener("load", function () {
-    let tabs = document.getElementById('sessions');
-
-    let defaultData = {
-        groups: []
-    }
-    chrome.storage.local.get({ 'state': defaultData }, (data) => {
-        data = data.state;
-
-        for (group of data.groups) {
-            let groupDiv = document.createElement('div');
-            groupDiv.setAttribute('data-id', group.id);
-            let header = document.createElement('h2');
-            header.appendChild(document.createTextNode(`${group.title}- ${group.tabs.length} tabs`));
-            groupDiv.appendChild(header);
-
-            for (tab of group.tabs) {
-                let item = document.createElement('div');
-                item.setAttribute('data-id', tab.id);
-                let title = document.createTextNode(tab.title);
-                let url = document.createElement('a');
-                url.appendChild(title);
-                url.href = tab.url;
-                url.target = "_blank"
-
-                let image = document.createElement('img');
-                image.src = `https://www.google.com/s2/favicons?domain=${new URL(tab.url).hostname}`;
-                image.className = 'favicon'
-                image.onerror = () => image.src = 'images/no-favicon.png';
-
-                item.appendChild(image);
-                item.appendChild(url);
-
-                groupDiv.appendChild(item);
-            }
-            tabs.appendChild(groupDiv);
+let app = new Vue({
+    el: '#app',
+    data: {
+        state:{
+            groups:[{
+                title: "",
+                description: "",
+                id: "",
+                tabs: [{
+                        id: "",
+                        date: "",
+                        title: "",
+                        url: ""
+                    }],
+                tag: ""
+            }]
         }
-    });
+    },
+    mounted(){
+        chrome.storage.local.get(['state'], (data) => { 
+            if(Object.keys(data).length > 0) 
+                this.state = data.state; 
+        });
+    },
+    methods:{
+        getFavicon(tab){
+            if(tab.url)
+                return `https://www.google.com/s2/favicons?domain=${new URL(tab.url).hostname}`;
+            else
+                return ""
+        }
+    }
 });
