@@ -10,7 +10,7 @@ window.addEventListener("load", function () {
         for (group of data.groups) {
             let groupDiv = document.createElement('div');
             let header = document.createElement('h2');
-            header.appendChild(document.createTextNode(`Session ${group.tabs[0].date} - ${group.tabs.length} tabs`));
+            header.appendChild(document.createTextNode(`Session - ${group.tabs.length} tabs`));
             groupDiv.appendChild(header);
 
             for (tab of group.tabs) {
@@ -23,10 +23,7 @@ window.addEventListener("load", function () {
                 url.target = "_blank"
 
                 let image = document.createElement('img');
-                if (tab.favIconUrl == undefined) {
-                    tab.favIconUrl = 'images/no-favicon.png';
-                }
-                image.src = tab.favicon;
+                image.src = `https://www.google.com/s2/favicons?domain=${new URL(tab.url).hostname}`;
                 image.className = 'favicon'
                 image.onerror = () => image.src = 'images/no-favicon.png';
 
