@@ -4,18 +4,19 @@ window.addEventListener("load", function () {
     let defaultData = {
         groups: []
     }
-    chrome.storage.local.get({ 'sessions': defaultData }, (data) => {
-        data = data.sessions;
+    chrome.storage.local.get({ 'state': defaultData }, (data) => {
+        data = data.state;
 
         for (group of data.groups) {
             let groupDiv = document.createElement('div');
+            groupDiv.setAttribute('data-id', group.id);
             let header = document.createElement('h2');
             header.appendChild(document.createTextNode(`Session - ${group.tabs.length} tabs`));
             groupDiv.appendChild(header);
 
             for (tab of group.tabs) {
                 let item = document.createElement('div');
-
+                item.setAttribute('data-id', tab.id);
                 let title = document.createTextNode(tab.title);
                 let url = document.createElement('a');
                 url.appendChild(title);

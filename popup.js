@@ -29,15 +29,22 @@ window.addEventListener("load", function () {
     }
   });
 
+  function UUIDv4() {
+    return `${1e7}-${1e3}-${4e3}-${8e3}-${1e11}`.replace(/[018]/g, c =>
+      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    )
+  }
+  
   function updateState(event, callback){
     let defaultData = {
       groups: []
     }
 
-    chrome.storage.local.get({ 'sessions': defaultData }, (data) => {
-      data = data.sessions;
+    chrome.storage.local.get({ 'state': defaultData }, (data) => {
+      data = data.state;
 
       let group = {
+        id: UUIDv4(),
         tag: "",
         description: "",
         tabs: []
@@ -48,6 +55,7 @@ window.addEventListener("load", function () {
       currentDate = currentDate.getDate() + "-" + (currentDate.getMonth() + 1) + "-" + currentDate.getFullYear() + " " + time;
       for (tab of currentSession) {
         let savedTab = {
+          id: UUIDv4(),
           title: tab.title,
           url: tab.url,
           date: currentDate
@@ -56,7 +64,7 @@ window.addEventListener("load", function () {
       }
 
       data.groups.push(group);
-      chrome.storage.local.set({ 'sessions': data });
+      chrome.storage.local.set({ 'state': data });
       
       if (callback)
         callback();
