@@ -45,6 +45,7 @@ window.addEventListener("load", function () {
 
       let group = {
         id: UUIDv4(),
+        title: "",
         tag: "",
         description: "",
         tabs: []
@@ -62,7 +63,7 @@ window.addEventListener("load", function () {
         }
         group.tabs.push(savedTab);
       }
-
+      group.title = `Session at ${currentDate}`;
       data.groups.push(group);
       chrome.storage.local.set({ 'state': data });
       

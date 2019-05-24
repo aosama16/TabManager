@@ -11,7 +11,7 @@ window.addEventListener("load", function () {
             let groupDiv = document.createElement('div');
             groupDiv.setAttribute('data-id', group.id);
             let header = document.createElement('h2');
-            header.appendChild(document.createTextNode(`Session - ${group.tabs.length} tabs`));
+            header.appendChild(document.createTextNode(`${group.title}- ${group.tabs.length} tabs`));
             groupDiv.appendChild(header);
 
             for (tab of group.tabs) {
