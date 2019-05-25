@@ -10,7 +10,7 @@
 <body>
     <h1>Saved Sessions</h1>
     <div v-cloak id='app'>
-        <h3 v-if="init">There are no saved sessions!</h3>
+        <!-- <h3 v-if="init">There are no saved sessions!</h3> -->
         <div v-for="group in state.groups" v-bind:data-id=group.id>
             <h2 class='title'>{{group.title}} - {{ group.tabs.length }} tabs</h2>
             <span v-on:click='deleteGroup(group.id)' class='clickable'>Delete Group</span>
