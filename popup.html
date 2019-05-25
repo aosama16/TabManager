@@ -1,14 +1,22 @@
 <!DOCTYPE html>
   <html>
     <head>
-      <link rel="stylesheet" type="text/css" href="popupStyle.css">
+      <link rel="stylesheet" type="text/css" href="css/popupStyle.css">
     </head>
     <body>
       <h1>Currently open Tabs</h1>
-      <div id="opentabs"></div>
-      <button id='saveSession'>Save Session</button>
-      <button id='saveSessionClose'>Save Session & close tabs</button>
-      <button id='openSession'>Open Sessions</button>
-      <script src="popup.js"></script>
+      <div id="app">
+        <div v-for="tab in tabs">
+          <img class='favicon' v-bind:src="getFavicon(tab)">
+          <a v-bind:href="tab.url">{{tab.title}}</a>
+        </div>
+        <button v-on:click="addCurrentSession">Save Session</button>
+        <button v-on:click="saveCloseSession">Save Session & close tabs</button>
+        <button v-on:click="openManagerPage">Open Sessions</button>
+      </div>
+
+      <script src="lib/vue.js"></script> <!-- development version, includes helpful console warnings -->
+      <script src="js/utils.js"></script>
+      <script src="js/popup.js"></script>
     </body>
   </html>
