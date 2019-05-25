@@ -1,3 +1,7 @@
+[v-cloak]{
+    display: none;
+}
+
 .favicon {
     width: 15px;
     margin-right: 5px;
@@ -23,4 +27,8 @@ div {
 .title{
     display: inline;
     margin-right: 10px
+}
+
+.date{
+    margin-left: 10px;
 }

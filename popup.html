@@ -5,7 +5,7 @@
     </head>
     <body>
       <h1>Currently open Tabs</h1>
-      <div id="app">
+      <div v-cloak id="app">
         <div v-for="tab in tabs">
           <img class='favicon' v-bind:src="getFavicon(tab)">
           <a v-bind:href="tab.url">{{tab.title}}</a>

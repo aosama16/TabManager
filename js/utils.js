@@ -34,7 +34,8 @@ class Utils {
         return {
             id: Utils.genID(),
             title: `Session at ${date}`,
-            tag: "",
+            date: date,
+            tags: [],
             description: "",
             tabs: []
         };
@@ -56,13 +57,14 @@ Utils.defaultEmptyState = {
             title: "",
             description: "",
             id: "",
+            tags: [],
+            date: "",
             tabs: [{
                 id: "",
                 date: "",
                 title: "",
                 url: ""
-            }],
-            tag: ""
+            }]
         }]
     },
     init: true

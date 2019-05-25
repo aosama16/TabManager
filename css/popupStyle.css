@@ -1,3 +1,7 @@
+[v-cloak]{
+    display: none;
+}
+
 body {
     height: 500px;
     width: 700px;

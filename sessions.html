@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="css/sessionsStyle.css">
-    <title>Saved Session</title>
+    <title>Saved Sessions</title>
 </head>
 <body>
     <h1>Saved Sessions</h1>
-    <div id='app'>
+    <div v-cloak id='app'>
         <h3 v-if="init">There are no saved sessions!</h3>
         <div v-for="group in state.groups" v-bind:data-id=group.id>
-            <h2 class='title'>{{group.title}}</h2>
+            <h2 class='title'>{{group.title}} - {{ group.tabs.length }} tabs</h2>
             <span v-on:click='deleteGroup(group.id)' class='clickable'>Delete Group</span>
+            <span class='date'>Created on {{group.date}}</span>
             <div class='tab' v-for="tab in group.tabs" v-bind:data-id=tab.id>
                 <img v-on:click='deleteTab(group.id, tab.id)' class="clickable delete" src="./images/delete.png">
                 <img class='favicon' v-bind:src="getFavicon(tab)">
