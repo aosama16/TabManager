@@ -35,57 +35,58 @@ window.addEventListener("load", function () {
     )
   }
   
-  function updateState(event, callback){
+  async function getState(){
     let defaultData = {
       groups: []
     }
-
-    chrome.storage.local.get({ 'state': defaultData }, (data) => {
-      data = data.state;
-
-      let group = {
-        id: UUIDv4(),
-        title: "",
-        tag: "",
-        description: "",
-        tabs: []
-      }
-
-      let currentDate = new Date();
-      let time = currentDate.toLocaleString([], { hour: '2-digit', minute: '2-digit' });
-      currentDate = currentDate.getDate() + "-" + (currentDate.getMonth() + 1) + "-" + currentDate.getFullYear() + " " + time;
-      for (tab of currentSession) {
-        let savedTab = {
-          id: UUIDv4(),
-          title: tab.title,
-          url: tab.url,
-          date: currentDate
-        }
-        group.tabs.push(savedTab);
-      }
-      group.title = `Session at ${currentDate}`;
-      data.groups.push(group);
-      chrome.storage.local.set({ 'state': data });
-      
-      if (callback)
-        callback();
+    return new Promise( (resolve, reject) => {
+        chrome.storage.local.get({ 'state': defaultData }, (data) => {
+          data = data.state;
+          return resolve(data);
+        });
     });
   }
 
-  function updateDisplayState(event){
-    updateState(event, () => {
-      chrome.tabs.create({ active: true, url: chrome.runtime.getURL('sessions.html') });
-      for (tab of currentSession) {
-        chrome.tabs.remove(tab.id);
-      }
-    });
+  async function updateState(){
+      let state = await getState();
+      
+      let group = {
+          id: UUIDv4(),
+          title: "",
+          tag: "",
+          description: "",
+          tabs: []
+        }
+  
+        let currentDate = new Date();
+        let time = currentDate.toLocaleString([], { hour: '2-digit', minute: '2-digit' });
+        currentDate = currentDate.getDate() + "-" + (currentDate.getMonth() + 1) + "-" + currentDate.getFullYear() + " " + time;
+        
+        for (tab of currentSession) {
+          let savedTab = {
+            id: UUIDv4(),
+            title: tab.title,
+            url: tab.url,
+            date: currentDate
+          }
+          group.tabs.push(savedTab);
+        }
+        group.title = `Session at ${currentDate}`;
+        state.groups.push(group);
+        chrome.storage.local.set({ 'state': state });
   }
 
   let saveSessionBtn = document.getElementById('saveSession');
   saveSessionBtn.onclick = updateState;
 
   let saveSessionCloseBtn = document.getElementById('saveSessionClose');
-  saveSessionCloseBtn.onclick = updateDisplayState;
+  saveSessionCloseBtn.onclick = async () => {
+      await updateState();
+      chrome.tabs.create({ active: true, url: chrome.runtime.getURL('sessions.html') });
+      for (tab of currentSession) {
+        chrome.tabs.remove(tab.id);
+      }
+  };
 
   let openSessionsBtn = document.getElementById('openSession');
   openSessionsBtn.onclick = () => chrome.tabs.create({ active: true, url: chrome.runtime.getURL('sessions.html') });
