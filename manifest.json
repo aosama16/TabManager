@@ -1,6 +1,6 @@
 {
     "name": "Tab Manager",
-    "version": "0.1",
+    "version": "0.3",
     "description": "Manage your tabs and get work done",
     "manifest_version": 2,
     "permissions": ["storage", "tabs"],

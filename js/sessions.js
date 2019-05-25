@@ -22,6 +22,24 @@ let app = new Vue({
             else if (this.state.groups.length == 1 && this.state.groups[0].tabs[0].title == "")  
                 return false;
             return false;
+        },
+        deleteTab(groupID, tabID){
+            let groupIDX = this.state.groups.findIndex(group => group.id == groupID);
+            targetGroup = this.state.groups[groupIDX];
+            
+            let tabIDX = targetGroup.tabs.findIndex(tab => tab.id == tabID);
+            targetGroup.tabs.splice(tabIDX, 1);
+            
+            // Delete group if tabs are empty - MAY KEEP LATER if it is considere a collection
+            if(targetGroup.tabs.length == 0)
+                this.state.groups.splice(groupIDX, 1)
+            
+            Utils.setState(this.state);
+        },
+        deleteGroup(groupID){
+            let groupIDX = this.state.groups.findIndex(group => group.id == groupID);
+            this.state.groups.splice(groupIDX, 1)
+            Utils.setState(this.state);
         }
     }
 });

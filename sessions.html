@@ -12,8 +12,10 @@
     <div id='app'>
         <h3 v-if="init">There are no saved sessions!</h3>
         <div v-for="group in state.groups" v-bind:data-id=group.id>
-            <h2>{{group.title}}</h2>
-            <div v-for="tab in group.tabs" v-bind:data-id=tab.id>
+            <h2 class='title'>{{group.title}}</h2>
+            <span v-on:click='deleteGroup(group.id)' class='clickable'>Delete Group</span>
+            <div class='tab' v-for="tab in group.tabs" v-bind:data-id=tab.id>
+                <img v-on:click='deleteTab(group.id, tab.id)' class="clickable delete" src="./images/delete.png">
                 <img class='favicon' v-bind:src="getFavicon(tab)">
                 <a v-bind:href="tab.url">{{tab.title}}</a>
             </div>

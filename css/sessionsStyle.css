@@ -8,3 +8,19 @@ ul {
 div {
     width: 100%;
 }
+.clickable{
+    cursor: pointer;
+}
+
+.delete{
+    visibility: hidden;
+    width: 20px;
+}
+.tab:hover .delete{
+    visibility: visible;
+}
+
+.title{
+    display: inline;
+    margin-right: 10px
+}
