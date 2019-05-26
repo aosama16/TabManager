@@ -67,5 +67,5 @@ Utils.defaultEmptyState = {
             }]
         }]
     },
-    init: true
+    updateGroupID: ''
 }

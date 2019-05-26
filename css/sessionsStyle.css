@@ -26,9 +26,32 @@ div {
 
 .title{
     display: inline;
-    margin-right: 10px
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.group{
+    margin-bottom: 50px;
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .date{
     margin-left: 10px;
+}
+
+input.editor{
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    padding: 0px;
+    border: 0;
+    outline: none;
+    font-size: 1.5em;
+    font-weight: bold;
 }

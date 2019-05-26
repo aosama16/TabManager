@@ -38,5 +38,8 @@ let app = new Vue({
           },
           deep: true
         }
-      }
+    },
+    directives: {
+        focus: { inserted: function (el) { el.focus() } }
+    }
 });

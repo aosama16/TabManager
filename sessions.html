@@ -11,8 +11,16 @@
     <h1>Saved Sessions</h1>
     <div v-cloak id='app'>
         <!-- <h3 v-if="init">There are no saved sessions!</h3> -->
-        <div v-for="group in state.groups" v-bind:data-id=group.id>
-            <h2 class='title'>{{group.title}} - {{ group.tabs.length }} tabs</h2>
+        <div class='group' v-for="group in state.groups" v-bind:data-id=group.id>
+            <input  v-model='group.title' 
+                    v-bind:placeholder='group.title' 
+                    v-if='updateGroupID == group.id' 
+                    v-on:keyup.enter="updateGroupID = ''" 
+                    v-on:blur="updateGroupID = ''" 
+                    v-focus
+                    type="text"
+                    class='editor'>
+            <h2 v-on:dblclick="updateGroupID = group.id" v-else class='title unselectable'>{{group.title}} - {{ group.tabs.length }} tabs</h2>
             <span v-on:click='deleteGroup(group.id)' class='clickable'>Delete Group</span>
             <span class='date'>Created on {{group.date}}</span>
             <div class='tab' v-for="tab in group.tabs" v-bind:data-id=tab.id>
