@@ -40,6 +40,9 @@ let app = new Vue({
         }
     },
     directives: {
-        focus: { inserted: function (el) { el.focus() } }
+        focus: { inserted: function (el) { el.focus(); }},
+        resizable: {
+            inserted: function (el) { el.style.width = `${el.value.length * 10}px` }, 
+            update: function (el) { el.style.width = `${el.value.length * 10}px` }}
     }
 });

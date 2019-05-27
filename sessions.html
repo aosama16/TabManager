@@ -17,10 +17,11 @@
                     v-if='updateGroupID == group.id' 
                     v-on:keyup.enter="updateGroupID = ''" 
                     v-on:blur="updateGroupID = ''" 
-                    v-focus
+                    v-focus v-resizable
                     type="text"
                     class='editor'>
-            <h2 v-on:dblclick="updateGroupID = group.id" v-else class='title unselectable'>{{group.title}} - {{ group.tabs.length }} tabs</h2>
+            <h2 v-on:dblclick="updateGroupID = group.id" v-else class='title unselectable'>{{group.title}}</h2>
+            <h3 class='title unselectable'>{{ group.tabs.length }} tabs</h3>
             <span v-on:click='deleteGroup(group.id)' class='clickable'>Delete Group</span>
             <span class='date'>Created on {{group.date}}</span>
             <div class='tab' v-for="tab in group.tabs" v-bind:data-id=tab.id>
