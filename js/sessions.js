@@ -29,6 +29,55 @@ let app = new Vue({
         deleteGroup(groupID){
             let groupIDX = this.state.groups.findIndex(group => group.id == groupID);
             this.state.groups.splice(groupIDX, 1)
+        },
+        saveID(event){
+            this.movedID = event.item.attributes['data-id'].textContent;
+            this.inDrag = true;
+        },
+        endDrag(){
+            this.inDrag = false;
+        },
+        highlight(event){
+            if(this.inDrag){
+                event.target.style.background = 'rgba(0,128,128,0.2)';
+                event.target.style.color = 'white';
+            }
+        },
+        removeHighlight(event){
+            event.target.style.background = '';
+            event.target.style.color = '';
+        },
+        moveTab(event){
+            var self = this; // Binding this to the function in set timout
+            setTimeout(() => { // Set timout to let Vue Draggable finish its drop then process the data
+                if(self.movedID == '')
+                    return;
+                let tabID = self.movedID;
+                let groupID = event.target.attributes["data-id"].textContent;
+                if(tabID && groupID){
+                    let tab, fromGroup;
+                    for(group of self.state.groups){
+                        tab = group.tabs.find(tab => {return tab.id === tabID });
+                        fromGroup = group
+                        if(tab) break;
+                    }
+                    
+                    if(group.id != groupID){
+                        let SrcGroupIDX = self.state.groups.findIndex(g => g.id == fromGroup.id);
+                        let SrcGroup = self.state.groups[SrcGroupIDX];
+    
+                        let DestGroupIDX = self.state.groups.findIndex(g => g.id == groupID);
+                        let DestGroup = self.state.groups[DestGroupIDX];
+                        
+                        DestGroup.tabs.push(tab);
+    
+                        let tabIDX = SrcGroup.tabs.findIndex(t => t.id == tabID);
+                        SrcGroup.tabs.splice(tabIDX, 1);
+                    }
+                }
+                self.movedID = '';
+                this.removeHighlight(event);
+            }, 10);
         }
     },
     watch: {
