@@ -19,7 +19,6 @@
                 @dragleave=removeHighlight>{{group.title}}</div>    
             </div>
         </div>
-        <!-- <h3 v-if="init">There are no saved sessions!</h3> -->
         <div class="main">
             <div v-if="merge.length > 0" class="fixed-nav-bar">
                 <button @click='mergeGroups'>Merge</button>
@@ -27,6 +26,7 @@
                 <span>{{merge.length}} groups selected</span>
             </div>
             <h1>Saved Sessions</h1>
+            <h3 v-if="state.groups.length == 0">There are no saved sessions!</h3>
             <draggable v-model='state.groups'handle=".title-handle">
                 <div :class="merge.includes(group.id) ? 'group selected-group' : 'group'" v-for="group in state.groups" :data-id=group.id>
                     <img class='title-handle' src="images/handle.png">

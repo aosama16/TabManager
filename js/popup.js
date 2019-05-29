@@ -15,7 +15,6 @@ let app = new Vue({
           if(!tab.url)
               return ""
           return `https://www.google.com/s2/favicons?domain=${new URL(tab.url).hostname}`;
-          // return `https://api.faviconkit.com/${new URL(tab.url).hostname}/144`;
       },
 
       async addCurrentSession() {
