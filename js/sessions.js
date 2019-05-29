@@ -81,6 +81,11 @@ let app = new Vue({
                 self.movedID = '';
                 this.removeHighlight(event);
             }, 10);
+        },
+        scrollto(groupID){
+            let el = document.querySelector(`.main [data-id='${groupID}']`);
+            if(el)
+                el.scrollIntoView(true);
         }
     },
     watch: {

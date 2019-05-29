@@ -10,9 +10,9 @@
 <body>
     <div v-cloak id='app'>
         <div class="sidenav">
-            <div class='group-side' v-for="group in state.groups">
+            <div class='group-side' v-for="group in state.groups" @click='scrollto(group.id)'>
                 <div :data-id=group.id 
-                :class="inDrag ? 'sidenav-group drop-container' : 'sidenav-group'" 
+                :class="inDrag ? 'sidenav-group drop-container' : 'sidenav-group'"
                 @dragover.prevent 
                 @drop='moveTab'
                 @dragenter=highlight
@@ -53,6 +53,7 @@
     <script src="lib/vue.js"></script> <!-- development version, includes helpful console warnings -->
     <script src="lib/Sortable.min.js"></script>
     <script src="lib/vuedraggable.umd.min.js"></script>
+    <script src="lib/jquery-3.4.1.min.js"></script>
 
     <script src="js/utils.js"></script>
     <script src="js/sessions.js"></script>

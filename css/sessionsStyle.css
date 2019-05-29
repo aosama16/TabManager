@@ -2,6 +2,10 @@
     display: none;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 .favicon {
     width: 15px;
     margin-right: 5px;
