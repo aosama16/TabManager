@@ -2,19 +2,22 @@ let app = new Vue({
     el: '#app',
     data: Utils.defaultEmptyState,
     mounted(){
-        Utils.getState().then((state) => {
-            if (state){
-                this.state = state;
-            }
-        });
+        this.getState();
+        window.addEventListener("focus", this.getState);
     },
     methods:{
+        getState(){
+            Utils.getState().then((state) => {
+                if (state){
+                    this.state = state;
+                }
+            });
+        },
         getFavicon(tab){
             if(!tab.url)
                 return ""
             return `https://www.google.com/s2/favicons?domain=${new URL(tab.url).hostname}`;
-            // return `https://api.faviconkit.com/${new URL(tab.url).hostname}/144`;
-            },
+        },
         deleteTab(groupID, tabID){
             let groupIDX = this.state.groups.findIndex(group => group.id == groupID);
             targetGroup = this.state.groups[groupIDX];
