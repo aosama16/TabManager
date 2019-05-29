@@ -21,9 +21,14 @@
         </div>
         <!-- <h3 v-if="init">There are no saved sessions!</h3> -->
         <div class="main">
+            <div v-if="merge.length > 0" class="fixed-nav-bar">
+                <button @click='mergeGroups'>Merge</button>
+                <input v-model='mergeTitle' @keyup.enter='mergeGroups' placeholder="New group title" type="text">
+                <span>{{merge.length}} groups selected</span>
+            </div>
             <h1>Saved Sessions</h1>
             <draggable v-model='state.groups'handle=".title-handle">
-                <div class='group' v-for="group in state.groups" :data-id=group.id>
+                <div :class="merge.includes(group.id) ? 'group selected-group' : 'group'" v-for="group in state.groups" :data-id=group.id>
                     <img class='title-handle' src="images/handle.png">
                     <input  v-model='group.title' 
                     :placeholder='group.title' 
@@ -37,6 +42,7 @@
                     <h3 class='title unselectable'>{{ group.tabs.length }} tabs</h3>
                     <span @click='deleteGroup(group.id)' class='clickable'>Delete Group</span>
                     <span class='date'>Created on {{group.date}}</span>
+                    <button @click='addToMerge(group.id)'>Select</button>
                     <draggable v-model='group.tabs' group="session" handle=".handle" @start='saveID' @end='endDrag'>
                         <div class='tab' v-for="tab in group.tabs" :data-id=tab.id>
                             <img @click='deleteTab(group.id, tab.id)' class="clickable delete" src="./images/delete.png">
@@ -53,7 +59,6 @@
     <script src="lib/vue.js"></script> <!-- development version, includes helpful console warnings -->
     <script src="lib/Sortable.min.js"></script>
     <script src="lib/vuedraggable.umd.min.js"></script>
-    <script src="lib/jquery-3.4.1.min.js"></script>
 
     <script src="js/utils.js"></script>
     <script src="js/sessions.js"></script>

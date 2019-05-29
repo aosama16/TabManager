@@ -49,6 +49,14 @@ class Utils {
             date: date
         };
     }
+
+    static getCurrentDate(){
+        // TODO find a better way to get the date
+        let currentDate = new Date();
+        let time = currentDate.toLocaleString([], { hour: '2-digit', minute: '2-digit' });
+        currentDate = currentDate.getDate() + "-" + (currentDate.getMonth() + 1) + "-" + currentDate.getFullYear() + " " + time;
+        return currentDate;
+    }
 }
 
 Utils.defaultEmptyState = {
@@ -67,6 +75,8 @@ Utils.defaultEmptyState = {
             }]
         }]
     },
+    merge:[],
+    mergeTitle:'',
     updateGroupID: '',
     movedID: '',
     inDrag: false

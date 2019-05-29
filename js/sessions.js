@@ -86,7 +86,37 @@ let app = new Vue({
             let el = document.querySelector(`.main [data-id='${groupID}']`);
             if(el)
                 el.scrollIntoView(true);
-        }
+        },
+        addToMerge(groupID){
+            if(this.merge.includes(groupID)){
+                let groupIDX = this.merge.findIndex(id => id == groupID);
+                this.merge.splice(groupIDX, 1);
+            }
+            else{
+                this.merge.push(groupID);
+            }
+        },
+        mergeGroups(){
+            let groups = [];
+            for(groupID of this.merge){
+                let groupIDX = this.state.groups.findIndex(group => group.id == groupID);
+                groups.push(this.state.groups.splice(groupIDX, 1)[0]);
+            }
+            let mergedTabs = [];
+            for(group of groups){
+                mergedTabs = mergedTabs.concat(group.tabs);
+            }
+            this.state.groups.push({
+                id: Utils.genID(),
+                title: this.mergeTitle || groups[0].title,
+                date: Utils.getCurrentDate(),
+                tags: [],
+                description: "",
+                tabs: mergedTabs
+            });
+            this.merge = [];
+            this.mergeTitle = '';
+        },
     },
     watch: {
         state: {

@@ -19,18 +19,13 @@ let app = new Vue({
       },
 
       async addCurrentSession() {
-        // TODO find a better way to get the date
-        let currentDate = new Date();
-        let time = currentDate.toLocaleString([], { hour: '2-digit', minute: '2-digit' });
-        currentDate = currentDate.getDate() + "-" + (currentDate.getMonth() + 1) + "-" + currentDate.getFullYear() + " " + time;
-        
         let state = await Utils.getState();
         if(!state)
           state = {groups: []};
 
-        let group = Utils.createGroup(currentDate);
+        let group = Utils.createGroup(Utils.getCurrentDate());
         for (tab of this.tabs) 
-          group.tabs.push(Utils.createTab(tab.title, tab.url, currentDate));
+          group.tabs.push(Utils.createTab(tab.title, tab.url, Utils.getCurrentDate()));
         state.groups.push(group);
       
         Utils.setState(state);
