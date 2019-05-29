@@ -42,7 +42,7 @@
                             <img v-on:click='deleteTab(group.id, tab.id)' class="clickable delete" src="./images/delete.png">
                             <img class='handle' src="images/handle.png">
                             <img class='favicon' v-bind:src="getFavicon(tab)">
-                            <a v-bind:href="tab.url">{{tab.title}}</a>
+                            <a v-bind:href="tab.url" target="_blank">{{tab.title}}</a>
                         </div>
                     </draggable>
                 </div>
