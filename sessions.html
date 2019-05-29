@@ -25,7 +25,7 @@
                 <input v-model='mergeTitle' @keyup.enter='mergeGroups' placeholder="New group title" type="text">
                 <span>{{merge.length}} groups selected</span>
             </div>
-            <h1>Saved Sessions</h1>
+            <h1>Saved Sessions - There are {{tabsNumber}} saved tabs.</h1>
             <h3 v-if="state.groups.length == 0">There are no saved sessions!</h3>
             <draggable v-model='state.groups'handle=".title-handle">
                 <div :class="merge.includes(group.id) ? 'group selected-group' : 'group'" v-for="group in state.groups" :data-id=group.id>

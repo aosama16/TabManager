@@ -122,6 +122,15 @@ let app = new Vue({
             this.mergeTitle = '';
         },
     },
+    computed: {
+        tabsNumber(){
+            let sum = 0;
+            for(group of this.state.groups){
+                sum += group.tabs.length;
+            }
+            return sum;
+        }
+    },
     watch: {
         state: {
           handler: function(state) {
