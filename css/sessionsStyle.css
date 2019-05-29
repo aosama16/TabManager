@@ -20,6 +20,9 @@ div {
     cursor: pointer;
 }
 
+.header-action{
+    margin: 0px 10px;
+}
 .delete{
     visibility: hidden;
     width: 20px;

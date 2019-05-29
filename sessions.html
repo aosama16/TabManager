@@ -40,11 +40,12 @@
                     class='editor'>
                     <h2 @dblclick="updateGroupID = group.id" v-else class='title unselectable'>{{group.title}}</h2>
                     <h3 class='title unselectable'>{{ group.tabs.length }} tabs</h3>
-                    <span @click='deleteGroup(group.id)' class='clickable'>Delete Group</span>
+                    <span @click='deleteGroup(group.id)' class='header-action clickable unselectable'>Delete Group</span>
+                    <span @click='openAlltabs(group.id)' class='header-action clickable unselectable'>Open all tabs</span>
                     <span class='date'>Created on {{group.date}}</span>
                     <button @click='addToMerge(group.id)'>Select</button>
                     <draggable v-model='group.tabs' group="session" handle=".handle" @start='saveID' @end='endDrag'>
-                        <div class='tab' v-for="tab in group.tabs" :data-id=tab.id>
+                        <div class='tab unselectable' v-for="tab in group.tabs" :data-id=tab.id>
                             <img @click='deleteTab(group.id, tab.id)' class="clickable delete" src="./images/delete.png">
                             <img class='handle' src="images/handle.png">
                             <img class='favicon' :src="getFavicon(tab)">
