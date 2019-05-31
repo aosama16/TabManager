@@ -23,7 +23,7 @@ div {
 .header-action{
     margin: 0px 10px;
 }
-.delete{
+.hidden{
     visibility: hidden;
     width: 20px;
 }
@@ -33,8 +33,12 @@ div {
     align-items: center;
     margin: 6px 0px;
 }
-.tab:hover .delete{
+.tab:hover .hidden{
     visibility: visible;
+}
+
+.visible{
+    width: 20px;
 }
 
 .sortable-chosen {

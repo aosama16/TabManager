@@ -44,9 +44,10 @@ class Utils {
     static createTab(title, url, date){
         return {
             id: Utils.genID(),
-            title: tab.title,
-            url: tab.url,
-            date: date
+            title: title,
+            url: url,
+            date: date,
+            starred: false
         };
     }
 

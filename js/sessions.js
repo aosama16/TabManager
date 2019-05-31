@@ -18,6 +18,15 @@ let app = new Vue({
                 return ""
             return `https://www.google.com/s2/favicons?domain=${new URL(tab.url).hostname}`;
         },
+        starTab(groupID, tabID){
+            let groupIDX = this.state.groups.findIndex(group => group.id == groupID);
+            targetGroup = this.state.groups[groupIDX];
+            
+            let tabIDX = targetGroup.tabs.findIndex(tab => tab.id == tabID);
+            let tab = targetGroup.tabs[tabIDX];
+
+            tab.starred = !tab.starred;
+        },
         deleteTab(groupID, tabID){
             if(confirm("Do you really want to delete this tab?")){
                 let groupIDX = this.state.groups.findIndex(group => group.id == groupID);
