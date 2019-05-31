@@ -162,6 +162,13 @@ let app = new Vue({
             }else{
                 groupTags.push(tagID);
             }
+        },
+        clearSelectedTags(){
+            this.selectedTags = [];
+        },
+        addToSelectedTags(tagID){
+            this.clearSelectedTags();
+            this.selectedTags.push(tagID);
         }
     },
     computed: {
@@ -171,6 +178,24 @@ let app = new Vue({
                 sum += group.tabs.length;
             }
             return sum;
+        },
+        filteredGroups(){
+            if(this.selectedTags.length == 0)
+                return this.state.groups
+
+            let filtered = this.state.groups.filter(group => {
+                for(tag of this.selectedTags){
+                    if(group.tags.includes(tag)) 
+                        return true;
+                }
+                return false;
+            });
+            return filtered;
+        },
+        selectedTag(){
+            let tagID = this.selectedTags[0];
+            let tagIDX = this.state.tags.findIndex(tag => tag.id == tagID);
+            return this.state.tags[tagIDX].title;
         }
     },
     watch: {

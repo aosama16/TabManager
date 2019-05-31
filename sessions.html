@@ -20,8 +20,8 @@
                 @dragleave=removeHighlight>{{group.title}}</div>    
             </div>
             <h3>TAGS</h3>
-            <div v-if='state.tags.length > 0' class='clickable'>ALL</div>
-            <div v-for="tag in state.tags" class='clickable'>{{tag.title}}</div>
+            <div v-if='state.tags.length > 0' class='clickable' @click='clearSelectedTags'>ALL</div>
+            <div v-for="tag in state.tags" class='clickable' @click='addToSelectedTags(tag.id)'>{{tag.title}}</div>
         </div>
         <div class="main">
             <div v-if="merge.length > 0" class="fixed-nav-bar">
@@ -29,10 +29,11 @@
                 <input v-model='mergeTitle' @keyup.enter='mergeGroups' placeholder="New group title" type="text">
                 <span>{{merge.length}} groups selected</span>
             </div>
+            <h3 v-if='selectedTags.length != 0'>Filtered by tag: {{selectedTag}}</h3>
             <h1>Saved Sessions - There are {{tabsNumber}} saved tabs.</h1>
             <h3 v-if="state.groups.length == 0">There are no saved sessions!</h3>
             <draggable v-model='state.groups'handle=".title-handle">
-                <div :class="merge.includes(group.id) ? 'group selected-group' : 'group'" v-for="group in state.groups" :data-id=group.id>
+                <div :class="merge.includes(group.id) ? 'group selected-group' : 'group'" v-for="group in filteredGroups" :data-id=group.id>
                     <img class='title-handle' src="images/handle.png">
                     <input  v-model='group.title' 
                     :placeholder='group.title' 
