@@ -20,7 +20,7 @@ let app = new Vue({
       async addCurrentSession() {
         let state = await Utils.getState();
         if(!state)
-          state = {groups: []};
+          state = Utils.defaultEmptyState.state;
 
         let group = Utils.createGroup(Utils.getCurrentDate());
         for (tab of this.tabs) 

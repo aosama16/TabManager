@@ -10,6 +10,7 @@
 <body>
     <div v-cloak id='app'>
         <div class="sidenav">
+            <h3>GROUPS</h3>
             <div class='group-side' v-for="group in state.groups" @click='scrollto(group.id)'>
                 <div :data-id=group.id 
                 :class="inDrag ? 'sidenav-group drop-container' : 'sidenav-group'"
@@ -18,6 +19,9 @@
                 @dragenter=highlight
                 @dragleave=removeHighlight>{{group.title}}</div>    
             </div>
+            <h3>TAGS</h3>
+            <div v-if='state.tags.length > 0' class='clickable'>ALL</div>
+            <div v-for="tag in state.tags" class='clickable'>{{tag.title}}</div>
         </div>
         <div class="main">
             <div v-if="merge.length > 0" class="fixed-nav-bar">
@@ -44,6 +48,15 @@
                     <span @click='openAlltabs(group.id)' class='header-action clickable unselectable'>Open all tabs</span>
                     <span class='date'>Created on {{group.date}}</span>
                     <button @click='addToMerge(group.id)'>Select</button>
+                    <div class="dropdown">
+                        <div class='show-more' @click='showTagMenu'></div>
+                        <div class="dropdown-content">
+                            <a class='unselectable' @click="toggleTagInGroup(group.id, tag.id)" v-for='tag in state.tags'>
+                                <img v-if='group.tags.includes(tag.id)' class='tick' src="./images/tick.png" alt="">
+                                {{tag.title}}</a>
+                            <input placeholder="NEW TAG..." @keyup.enter='addTag' type="text">
+                        </div>
+                    </div>
                     <draggable v-model='group.tabs' group="session" handle=".handle" @start='saveID' @end='endDrag'>
                         <div class='tab unselectable' v-for="tab in group.tabs" :data-id=tab.id>
                             <img @click='deleteTab(group.id, tab.id)' class="clickable hidden" src="./images/delete.png">

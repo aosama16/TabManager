@@ -62,7 +62,8 @@ class Utils {
 
 Utils.defaultEmptyState = {
     state: {
-        groups: []
+        groups: [],
+        tags: []
     },
     merge:[],
     mergeTitle:'',

@@ -135,6 +135,34 @@ let app = new Vue({
             this.merge = [];
             this.mergeTitle = '';
         },
+        addTag(event){
+            this.state.tags.push({
+                id: Utils.genID(),
+                title: event.target.value
+            });
+            event.target.value = '';
+        },
+        showTagMenu(event){
+            let openedMenu = event.target.nextElementSibling.classList.contains('show');
+
+            let allElements = Array.from(document.querySelectorAll('.show'))
+            for (let element of allElements) {
+                element.classList.remove('show')
+            }
+            if(openedMenu == false)
+                event.target.nextElementSibling.classList.add('show');
+        },
+        toggleTagInGroup(groupID, tagID){
+            let groupIDX = this.state.groups.findIndex(group => group.id == groupID);
+            let groupTags = this.state.groups[groupIDX].tags;
+
+            if(groupTags.includes(tagID)){
+                let tagIDX = groupTags.findIndex(tag => tag == tagID);
+                groupTags.splice(tagIDX, 1);
+            }else{
+                groupTags.push(tagID);
+            }
+        }
     },
     computed: {
         tabsNumber(){
