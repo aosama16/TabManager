@@ -3,6 +3,7 @@ draggable(v-model='state.groups', handle='.title-handle')
         v-for="group in filteredGroups" 
         :data-id='group.id')
         
+        //- Group header
         img.title-handle(src='images/handle.png')
         input.editor(v-model='group.title', 
                     :placeholder='group.title', 
@@ -12,13 +13,16 @@ draggable(v-model='state.groups', handle='.title-handle')
                     v-focus, v-resizable, type='text')
         h2.title.unselectable(@dblclick='updateGroupID = group.id', v-else='') {{group.title}}
         
+        //- Group Header Actions
         h3.title.unselectable {{ group.tabs.length }} tabs
         span.header-action.clickable.unselectable(@click='deleteGroup(group.id)') Delete Group
         span.header-action.clickable.unselectable(@click='openAlltabs(group.id)') Open all tabs
         span.date Created on {{group.date}}
         
+        //- Select Button
         button(@click='addToMerge(group.id)') Select
         
+        //- Choose Tags Dropdown
         .dropdown
             .show-more(@click='showTagMenu')
             .dropdown-content
@@ -26,4 +30,15 @@ draggable(v-model='state.groups', handle='.title-handle')
                     img.tick(v-if='group.tags.includes(tag.id)', src='./images/tick.png', alt='')
                     span {{tag.title}}
                 input(placeholder='NEW TAG...', @keyup.enter='addTag', type='text')
+        
+        //- Group Description
+        input.editor.description(v-model='group.description', 
+                                :placeholder='group.description', 
+                                v-if='updateGroupDescription == group.id', 
+                                @keyup.enter="updateGroupDescription = ''", 
+                                @blur="updateGroupDescription = ''", 
+                                v-focus, v-resizable, type='text')
+        h4.unselectable.descriptionText(@dblclick='updateGroupDescription = group.id', v-else) {{group.description}}
+        
+        //- Tabs
         include tab

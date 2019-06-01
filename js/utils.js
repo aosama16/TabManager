@@ -36,7 +36,7 @@ class Utils {
             title: `Session at ${date}`,
             date: date,
             tags: [],
-            description: "",
+            description: "description",
             tabs: []
         };
     }
@@ -70,6 +70,7 @@ Utils.defaultEmptyState = {
     mergeTitle:'',
     updateGroupID: '',
     updateTagID: '',
+    updateGroupDescription: '',
     movedID: '',
     inDrag: false,
     selectedTags: []

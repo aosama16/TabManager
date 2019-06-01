@@ -46,6 +46,12 @@ input:checked + a{
     text-decoration: line-through;
 }
 
+.descriptionText{
+    color:gray;
+    margin: 3px 0px;
+    cursor: pointer;
+}
+
 .visible{
     width: 20px;
 }
@@ -93,6 +99,12 @@ input.editor{
     outline: none;
     font-size: 1.5em;
     font-weight: bold;
+}
+
+input.editor.description{
+    display: block;
+    font-size: 1em;
+    margin: 3px 0px;
 }
 
 img.title-handle {
