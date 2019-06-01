@@ -47,6 +47,12 @@ let app = new Vue({
             for(tab of this.state.groups[groupIDX].tabs)
                 chrome.tabs.create({url: tab.url});
         },
+        archiveGroup(groupID){
+            let groupIDX = this.state.groups.findIndex(group => group.id == groupID);
+            let archive = this.state.groups.splice(groupIDX, 1);
+
+            this.state.archive.push(archive);
+        },
         saveID(event){
             this.movedID = event.item.attributes['data-id'].textContent;
             this.inDrag = true;

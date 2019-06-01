@@ -34,7 +34,7 @@
         <div :class="merge.includes(group.id) ? 'group selected-group' : 'group'" v-for="group in filteredGroups" :data-id="group.id"><img class="title-handle" src="images/handle.png">
           <input class="editor" v-model="group.title" :placeholder="group.title" v-if="updateGroupID == group.id" @keyup.enter="updateGroupID = ''" @blur="updateGroupID = ''" v-focus v-resizable type="text">
           <h2 class="title unselectable" @dblclick="updateGroupID = group.id" v-else="">{{group.title}}</h2>
-          <h3 class="title unselectable">{{ group.tabs.length }} tabs</h3><span class="header-action clickable unselectable" @click="deleteGroup(group.id)">Delete Group</span><span class="header-action clickable unselectable" @click="openAlltabs(group.id)">Open all tabs</span><span class="date">Created on {{group.date}}</span>
+          <h3 class="title unselectable">{{ group.tabs.length }} tabs</h3><span class="header-action clickable unselectable" @click="deleteGroup(group.id)">Delete Group</span><span class="header-action clickable unselectable" @click="openAlltabs(group.id)">Open all tabs</span><span class="header-action clickable unselectable" @click="archiveGroup(group.id)">Archive Group</span><span class="date">Created on {{group.date}}</span>
           <button @click="addToMerge(group.id)">Select</button>
           <div class="dropdown">
             <div class="show-more" @click="showTagMenu"></div>
