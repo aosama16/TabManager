@@ -49,7 +49,7 @@ let app = new Vue({
         },
         archiveGroup(groupID){
             let groupIDX = this.state.groups.findIndex(group => group.id == groupID);
-            let archive = this.state.groups.splice(groupIDX, 1);
+            let archive = this.state.groups.splice(groupIDX, 1)[0];
 
             this.state.archive.push(archive);
         },
@@ -171,10 +171,14 @@ let app = new Vue({
         },
         clearSelectedTags(){
             this.selectedTags = [];
+
+            this.filter = '';
         },
         addToSelectedTags(tagID){
             this.clearSelectedTags();
             this.selectedTags.push(tagID);
+
+            this.filter = 'tags'
         },
         deleteTag(tagID){
             let tagIDX = this.state.tags.findIndex(tag => tag.id == tagID);
@@ -192,6 +196,9 @@ let app = new Vue({
         },
         createNewGroup(){
             this.state.groups.push(Utils.createGroup(Utils.getCurrentDate()));
+        },
+        displayArchive(){
+            this.filter = 'archive';
         }
     },
     computed: {
@@ -203,17 +210,25 @@ let app = new Vue({
             return sum;
         },
         filteredGroups(){
-            if(this.selectedTags.length == 0)
+            if(this.filter == '')
                 return this.state.groups
-
-            let filtered = this.state.groups.filter(group => {
-                for(tag of this.selectedTags){
-                    if(group.tags.includes(tag)) 
-                        return true;
-                }
-                return false;
-            });
-            return filtered;
+            
+            if(this.filter == 'tags'){
+                if(this.selectedTags.length == 0)
+                    return this.state.groups
+    
+                let filtered = this.state.groups.filter(group => {
+                    for(tag of this.selectedTags){
+                        if(group.tags.includes(tag)) 
+                            return true;
+                    }
+                    return false;
+                });
+                return filtered;
+            }
+            else if (this.filter == 'archive'){
+                return this.state.archive;
+            }
         },
         selectedTag(){
             let tagID = this.selectedTags[0];

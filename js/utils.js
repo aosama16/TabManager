@@ -74,5 +74,6 @@ Utils.defaultEmptyState = {
     updateGroupDescription: '',
     movedID: '',
     inDrag: false,
-    selectedTags: []
+    selectedTags: [],
+    filter: ''
 }

@@ -20,6 +20,7 @@
       <div class="clickable" v-for="tag in state.tags">
         <input class="editor" v-model="tag.title" :placeholder="tag.title" v-if="updateTagID == tag.id" @keyup.enter="updateTagID = ''" @blur="updateTagID = ''" v-focus v-resizable type="text"><span @click="addToSelectedTags(tag.id)" v-else="">{{tag.title}}</span><img class="favicon" @click="updateTagID = tag.id" src="./images/rename.png"><img class="favicon" @click="deleteTag(tag.id)" src="./images/delete.png">
       </div>
+      <h3 class="clickable unselectable" @click="displayArchive">ARCHIVE</h3>
     </div>
     <div class="fixed-nav-bar" v-if="merge.length != 0">
       <button @click="mergeGroups">Merge</button>

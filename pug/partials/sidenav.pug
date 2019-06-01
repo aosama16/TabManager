@@ -21,3 +21,4 @@
         span(@click='addToSelectedTags(tag.id)', v-else='') {{tag.title}}
         img.favicon(@click='updateTagID = tag.id', src='./images/rename.png')
         img.favicon(@click='deleteTag(tag.id)', src='./images/delete.png')
+    h3.clickable.unselectable(@click='displayArchive') ARCHIVE
