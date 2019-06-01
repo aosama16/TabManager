@@ -47,7 +47,8 @@ class Utils {
             title: title,
             url: url,
             date: date,
-            starred: false
+            starred: false,
+            checked: false
         };
     }
 

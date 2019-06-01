@@ -43,7 +43,9 @@
             </div>
           </div>
           <draggable v-model="group.tabs" group="session" handle=".handle" @start="saveID" @end="endDrag">
-            <div class="tab unselectable" v-for="tab in group.tabs" :data-id="tab.id"><img class="clickable hidden" @click="deleteTab(group.id, tab.id)" src="./images/delete.png"><img @click="starTab(group.id, tab.id)" :class="tab.starred ? 'clickable visible' : 'clickable hidden'" :src="tab.starred ? './images/starred.png' : './images/star-empty.png'"><img class="handle" src="images/handle.png"><img class="favicon" :src="getFavicon(tab)"><a :href="tab.url" target="_blank">{{tab.title}}</a></div>
+            <div class="tab unselectable" v-for="tab in group.tabs" :data-id="tab.id"><img class="clickable hidden" @click="deleteTab(group.id, tab.id)" src="./images/delete.png"><img @click="starTab(group.id, tab.id)" :class="tab.starred ? 'clickable visible' : 'clickable hidden'" :src="tab.starred ? './images/starred.png' : './images/star-empty.png'"><img class="handle" src="images/handle.png"><img class="favicon" :src="getFavicon(tab)">
+              <input type="checkbox" v-model="tab.checked"><a :href="tab.url" target="_blank">{{tab.title}}</a>
+            </div>
           </draggable>
         </div>
       </draggable>

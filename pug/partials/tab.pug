@@ -6,4 +6,5 @@ draggable(v-model='group.tabs', group='session', handle='.handle', @start='saveI
             :src="tab.starred ? './images/starred.png' : './images/star-empty.png'")
         img.handle(src='images/handle.png')
         img.favicon(:src='getFavicon(tab)')
+        input(type='checkbox', v-model='tab.checked')
         a(:href='tab.url', target='_blank') {{tab.title}}

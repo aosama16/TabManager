@@ -37,6 +37,15 @@ div {
     visibility: visible;
 }
 
+.tab a{
+    text-decoration: none;
+}
+
+input:checked + a{
+    color:gray;
+    text-decoration: line-through;
+}
+
 .visible{
     width: 20px;
 }
