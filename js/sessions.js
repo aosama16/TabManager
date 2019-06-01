@@ -169,6 +169,17 @@ let app = new Vue({
         addToSelectedTags(tagID){
             this.clearSelectedTags();
             this.selectedTags.push(tagID);
+        },
+        deleteTag(tagID){
+            let tagIDX = this.state.tags.findIndex(tag => tag.id == tagID);
+            this.state.tags.splice(tagIDX, 1);
+
+            for(group of this.state.groups){
+                if(group.tags.includes(tagID)){
+                    tagIDX = group.tags.findIndex(tag => tag == tagID);
+                    group.tags.splice(tagIDX, 1);
+                }
+            }
         }
     },
     computed: {

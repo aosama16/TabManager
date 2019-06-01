@@ -21,7 +21,20 @@
             </div>
             <h3>TAGS</h3>
             <div v-if='state.tags.length > 0' class='clickable' @click='clearSelectedTags'>ALL</div>
-            <div v-for="tag in state.tags" class='clickable' @click='addToSelectedTags(tag.id)'>{{tag.title}}</div>
+            <div v-for="tag in state.tags" class='clickable'>
+                <input  v-model='tag.title' 
+                :placeholder='tag.title' 
+                v-if='updateTagID == tag.id' 
+                @keyup.enter="updateTagID = ''" 
+                @blur="updateTagID = ''" 
+                v-focus v-resizable
+                type="text"
+                class='editor'>
+                <span @click='addToSelectedTags(tag.id)' v-else>{{tag.title}}</span>
+                <img @click='updateTagID = tag.id' class="favicon" src="./images/rename.png">
+                <img @click='deleteTag(tag.id)' class="favicon" src="./images/delete.png">
+            </div>
+            <input placeholder="NEW TAG..." @keyup.enter='addTag' type="text">
         </div>
         <div class="main">
             <div v-if="merge.length > 0" class="fixed-nav-bar">

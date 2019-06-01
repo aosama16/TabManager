@@ -68,6 +68,7 @@ Utils.defaultEmptyState = {
     merge:[],
     mergeTitle:'',
     updateGroupID: '',
+    updateTagID: '',
     movedID: '',
     inDrag: false,
     selectedTags: []
