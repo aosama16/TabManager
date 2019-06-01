@@ -1,3 +1,4 @@
 h3(v-if='selectedTags.length != 0') Filtered by tag: {{selectedTag}}
 h1 Saved Sessions - There are {{tabsNumber}} saved tabs.
 h3(v-if='state.groups.length == 0') There are no saved sessions!
+button(@click='createNewGroup') Add Group

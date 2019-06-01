@@ -152,9 +152,6 @@ let app = new Vue({
                 event.target.nextElementSibling.focus();
             }
         },
-        hideDropdown(event){
-            event.target.classList.remove('show')
-        },
         toggleTagInGroup(groupID, tagID){
             let groupIDX = this.state.groups.findIndex(group => group.id == groupID);
             let groupTags = this.state.groups[groupIDX].tags;
@@ -186,6 +183,9 @@ let app = new Vue({
         },
         deleteEmptyGroups(){
             this.state.groups = this.state.groups.filter(group => group.tabs.length > 0);
+        },
+        createNewGroup(){
+            this.state.groups.push(Utils.createGroup(Utils.getCurrentDate()));
         }
     },
     computed: {

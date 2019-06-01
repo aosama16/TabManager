@@ -21,7 +21,7 @@ draggable(v-model='state.groups', handle='.title-handle')
         
         .dropdown
             .show-more(@click='showTagMenu')
-            .dropdown-content(tabindex="0", @blur='hideDropdown')
+            .dropdown-content
                 a.unselectable(@click='toggleTagInGroup(group.id, tag.id)', v-for='tag in state.tags')
                     img.tick(v-if='group.tags.includes(tag.id)', src='./images/tick.png', alt='')
                     span {{tag.title}}

@@ -29,6 +29,7 @@
       <h3 v-if="selectedTags.length != 0">Filtered by tag: {{selectedTag}}</h3>
       <h1>Saved Sessions - There are {{tabsNumber}} saved tabs.</h1>
       <h3 v-if="state.groups.length == 0">There are no saved sessions!</h3>
+      <button @click="createNewGroup">Add Group</button>
       <draggable v-model="state.groups" handle=".title-handle">
         <div :class="merge.includes(group.id) ? 'group selected-group' : 'group'" v-for="group in filteredGroups" :data-id="group.id"><img class="title-handle" src="images/handle.png">
           <input class="editor" v-model="group.title" :placeholder="group.title" v-if="updateGroupID == group.id" @keyup.enter="updateGroupID = ''" @blur="updateGroupID = ''" v-focus v-resizable type="text">
@@ -37,7 +38,7 @@
           <button @click="addToMerge(group.id)">Select</button>
           <div class="dropdown">
             <div class="show-more" @click="showTagMenu"></div>
-            <div class="dropdown-content" tabindex="0" @blur="hideDropdown"><a class="unselectable" @click="toggleTagInGroup(group.id, tag.id)" v-for="tag in state.tags"><img class="tick" v-if="group.tags.includes(tag.id)" src="./images/tick.png" alt=""><span>{{tag.title}}</span></a>
+            <div class="dropdown-content"><a class="unselectable" @click="toggleTagInGroup(group.id, tag.id)" v-for="tag in state.tags"><img class="tick" v-if="group.tags.includes(tag.id)" src="./images/tick.png" alt=""><span>{{tag.title}}</span></a>
               <input placeholder="NEW TAG..." @keyup.enter="addTag" type="text">
             </div>
           </div>
