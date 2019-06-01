@@ -1,5 +1,5 @@
 draggable(v-model='group.tabs', group='session', handle='.handle', @start='saveID', @end='endDrag')
-    .tab.unselectable(v-for='tab in group.tabs', :data-id='tab.id')
+    .tab.unselectable(v-for='tab in filteredTabs(group.tabs)', :data-id='tab.id')
         img.clickable.hidden(@click='deleteTab(group.id, tab.id)', src='./images/delete.png')
         img(@click='starTab(group.id, tab.id)', 
             :class="tab.starred ? 'clickable visible' : 'clickable hidden'", 

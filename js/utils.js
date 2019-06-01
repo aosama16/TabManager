@@ -75,5 +75,6 @@ Utils.defaultEmptyState = {
     movedID: '',
     inDrag: false,
     selectedTags: [],
-    filter: ''
+    filter: '',
+    search: ''
 }

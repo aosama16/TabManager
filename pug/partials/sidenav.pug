@@ -1,7 +1,7 @@
 .sidenav
     button(@click='deleteEmptyGroups') Delete empty groups
+    input(v-model='search' placeholder='Serch title...')
     h3 GROUPS
-    
     .group-side(v-for='group in state.groups', @click='scrollto(group.id)')
         div(:data-id='group.id', 
             :class="inDrag ? 'sidenav-group drop-container' : 'sidenav-group'", 

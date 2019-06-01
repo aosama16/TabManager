@@ -227,6 +227,9 @@ let app = new Vue({
         },
         displayArchive(){
             this.filter = 'archive';
+        },
+        filteredTabs(tabs){
+            return tabs.filter(tab => tab.title.toLowerCase().includes(this.search.toLowerCase()));
         }
     },
     computed: {
