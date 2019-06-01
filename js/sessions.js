@@ -149,8 +149,13 @@ let app = new Vue({
             for (let element of allElements) {
                 element.classList.remove('show')
             }
-            if(openedMenu == false)
+            if(openedMenu == false){
                 event.target.nextElementSibling.classList.add('show');
+                event.target.nextElementSibling.focus();
+            }
+        },
+        hideDropdown(event){
+            event.target.classList.remove('show')
         },
         toggleTagInGroup(groupID, tagID){
             let groupIDX = this.state.groups.findIndex(group => group.id == groupID);

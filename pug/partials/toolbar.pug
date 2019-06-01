@@ -1,0 +1,7 @@
+.fixed-nav-bar(v-if='merge.length != 0')
+    button(@click='mergeGroups') Merge
+    input(v-model='mergeTitle', 
+            @keyup.enter='mergeGroups', 
+            placeholder='New group title', 
+            type='text')
+    span {{merge.length}} groups selected

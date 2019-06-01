@@ -1,0 +1,22 @@
+.sidenav
+    h3 GROUPS
+    .group-side(v-for='group in state.groups', @click='scrollto(group.id)')
+        div(:data-id='group.id', 
+            :class="inDrag ? 'sidenav-group drop-container' : 'sidenav-group'", 
+            @dragover.prevent='', 
+            @drop='moveTab', 
+            @dragenter='highlight', 
+            @dragleave='removeHighlight') {{group.title}}
+    h3 TAGS
+    .clickable(v-if='state.tags.length != 0', 
+               @click='clearSelectedTags') ALL
+    .clickable(v-for='tag in state.tags')
+        input.editor(v-model='tag.title', 
+                        :placeholder='tag.title', 
+                        v-if='updateTagID == tag.id', 
+                        @keyup.enter="updateTagID = ''", 
+                        @blur="updateTagID = ''", 
+                        v-focus, v-resizable, type='text')
+        span(@click='addToSelectedTags(tag.id)', v-else='') {{tag.title}}
+        img.favicon(@click='updateTagID = tag.id', src='./images/rename.png')
+        img.favicon(@click='deleteTag(tag.id)', src='./images/delete.png')

@@ -1,0 +1,29 @@
+draggable(v-model='state.groups', handle='.title-handle')
+    div(:class="merge.includes(group.id) ? 'group selected-group' : 'group'" 
+        v-for="group in filteredGroups" 
+        :data-id='group.id')
+        
+        img.title-handle(src='images/handle.png')
+        input.editor(v-model='group.title', 
+                    :placeholder='group.title', 
+                    v-if='updateGroupID == group.id', 
+                    @keyup.enter="updateGroupID = ''", 
+                    @blur="updateGroupID = ''", 
+                    v-focus, v-resizable, type='text')
+        h2.title.unselectable(@dblclick='updateGroupID = group.id', v-else='') {{group.title}}
+        
+        h3.title.unselectable {{ group.tabs.length }} tabs
+        span.header-action.clickable.unselectable(@click='deleteGroup(group.id)') Delete Group
+        span.header-action.clickable.unselectable(@click='openAlltabs(group.id)') Open all tabs
+        span.date Created on {{group.date}}
+        
+        button(@click='addToMerge(group.id)') Select
+        
+        .dropdown
+            .show-more(@click='showTagMenu')
+            .dropdown-content(tabindex="0", @blur='hideDropdown')
+                a.unselectable(@click='toggleTagInGroup(group.id, tag.id)', v-for='tag in state.tags')
+                    img.tick(v-if='group.tags.includes(tag.id)', src='./images/tick.png', alt='')
+                    span {{tag.title}}
+                input(placeholder='NEW TAG...', @keyup.enter='addTag', type='text')
+        include tab
