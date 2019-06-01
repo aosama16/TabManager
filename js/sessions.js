@@ -183,6 +183,9 @@ let app = new Vue({
                     group.tags.splice(tagIDX, 1);
                 }
             }
+        },
+        deleteEmptyGroups(){
+            this.state.groups = this.state.groups.filter(group => group.tabs.length > 0);
         }
     },
     computed: {
