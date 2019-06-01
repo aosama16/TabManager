@@ -34,10 +34,6 @@ let app = new Vue({
                 
                 let tabIDX = targetGroup.tabs.findIndex(tab => tab.id == tabID);
                 targetGroup.tabs.splice(tabIDX, 1);
-                
-                // Delete group if tabs are empty - MAY KEEP LATER if it is considere a collection
-                if(targetGroup.tabs.length == 0)
-                    this.state.groups.splice(groupIDX, 1);
             }
         },
         deleteGroup(groupID){
@@ -121,14 +117,16 @@ let app = new Vue({
                 groups.push(this.state.groups.splice(groupIDX, 1)[0]);
             }
             let mergedTabs = [];
+            let mergedTags = [];
             for(group of groups){
                 mergedTabs = mergedTabs.concat(group.tabs);
+                mergedTags = mergedTags.concat(group.tags);
             }
             this.state.groups.push({
                 id: Utils.genID(),
                 title: this.mergeTitle || groups[0].title,
                 date: Utils.getCurrentDate(),
-                tags: [],
+                tags: mergedTags,
                 description: "",
                 tabs: mergedTabs
             });
