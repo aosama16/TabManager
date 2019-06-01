@@ -102,6 +102,33 @@ let app = new Vue({
                 this.removeHighlight(event);
             }, 10);
         },
+        moveTabNewGroup(){
+            var self = this; // Binding this to the function in set timout
+            setTimeout(() => { // Set timout to let Vue Draggable finish its drop then process the data
+                if(self.movedID == '')
+                    return;
+                let tabID = self.movedID;
+                if(tabID){
+                    let tab, fromGroup;
+                    for(group of self.state.groups){
+                        tab = group.tabs.find(tab => {return tab.id === tabID });
+                        fromGroup = group
+                        if(tab) break;
+                    }
+                    
+                    let SrcGroupIDX = self.state.groups.findIndex(g => g.id == fromGroup.id);
+                    let SrcGroup = self.state.groups[SrcGroupIDX];
+                    let tabIDX = SrcGroup.tabs.findIndex(t => t.id == tabID);
+                    SrcGroup.tabs.splice(tabIDX, 1);
+
+                    let DestGroup = Utils.createGroup(Utils.getCurrentDate());
+                    
+                    DestGroup.tabs.push(tab);
+                    this.state.groups.push(DestGroup);
+                }
+                self.movedID = '';
+            }, 10);
+        },
         scrollto(groupID){
             let el = document.querySelector(`.main [data-id='${groupID}']`);
             if(el)

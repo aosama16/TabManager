@@ -15,6 +15,7 @@
       <div class="group-side" v-for="group in state.groups" @click="scrollto(group.id)">
         <div :data-id="group.id" :class="inDrag ? 'sidenav-group drop-container' : 'sidenav-group'" @dragover.prevent="" @drop="moveTab" @dragenter="highlight" @dragleave="removeHighlight">{{group.title}}</div>
       </div>
+      <div :data-id="0" :class="inDrag ? 'sidenav-group drop-container' : 'sidenav-group'" @dragover.prevent="" @drop="moveTabNewGroup" @dragenter="highlight" @dragleave="removeHighlight" v-if="inDrag">NEW GROUP</div>
       <h3>TAGS</h3>
       <div class="clickable" v-if="state.tags.length != 0" @click="clearSelectedTags">ALL</div>
       <div class="clickable" v-for="tag in state.tags">

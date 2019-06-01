@@ -17,8 +17,7 @@ draggable(v-model='state.groups', handle='.title-handle')
         h3.title.unselectable {{ group.tabs.length }} tabs
         span.header-action.clickable.unselectable(@click='deleteGroup(group.id)') Delete Group
         span.header-action.clickable.unselectable(@click='openAlltabs(group.id)') Open all tabs
-        span.header-action.clickable.unselectable(@click='archiveGroup(group.id)',
-                                                v-if='filter != "archive"') Archive Group
+        span.header-action.clickable.unselectable(@click='archiveGroup(group.id)', v-if='filter != "archive"') Archive Group
         span.date Created on {{group.date}}
         
         //- Select Button

@@ -1,6 +1,7 @@
 .sidenav
     button(@click='deleteEmptyGroups') Delete empty groups
     h3 GROUPS
+    
     .group-side(v-for='group in state.groups', @click='scrollto(group.id)')
         div(:data-id='group.id', 
             :class="inDrag ? 'sidenav-group drop-container' : 'sidenav-group'", 
@@ -8,6 +9,13 @@
             @drop='moveTab', 
             @dragenter='highlight', 
             @dragleave='removeHighlight') {{group.title}}
+    div(:data-id='0', 
+        :class="inDrag ? 'sidenav-group drop-container' : 'sidenav-group'", 
+        @dragover.prevent='', 
+        @drop='moveTabNewGroup', 
+        @dragenter='highlight', 
+        @dragleave='removeHighlight'
+        v-if='inDrag') NEW GROUP
     h3 TAGS
     .clickable(v-if='state.tags.length != 0', 
                @click='clearSelectedTags') ALL
