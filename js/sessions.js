@@ -134,7 +134,8 @@ let app = new Vue({
                 date: Utils.getCurrentDate(),
                 tags: mergedTags,
                 description: "",
-                tabs: mergedTabs
+                tabs: mergedTabs,
+                description: 'description'
             });
             this.merge = [];
             this.mergeTitle = '';
