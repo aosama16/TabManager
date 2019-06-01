@@ -4,15 +4,19 @@
       <link rel="stylesheet" type="text/css" href="css/popupStyle.css">
     </head>
     <body>
-      <h1>Currently open Tabs</h1>
       <div v-cloak id="app">
-        <div v-for="tab in tabs">
-          <img class='favicon' v-bind:src="getFavicon(tab)">
-          <a v-bind:href="tab.url">{{tab.title}}</a>
+        <div>
+          <button v-on:click="addCurrentSession">Save Session</button>
+          <button v-on:click="saveCloseSession">Save Session & close tabs</button>
+          <button v-on:click="openManagerPage">Open Sessions</button>
         </div>
-        <button v-on:click="addCurrentSession">Save Session</button>
-        <button v-on:click="saveCloseSession">Save Session & close tabs</button>
-        <button v-on:click="openManagerPage">Open Sessions</button>
+        <img style='width: 25px' src="./images/starred.png" alt="">
+        <h2>Starred Tabs</h2>
+        <h3 v-if='starredTabs.length == 0'>There are no starred tabs</h3>
+        <div v-for="tab in starredTabs">
+          <img class='favicon' v-bind:src="getFavicon(tab)">
+          <a v-bind:href="tab.url" target='_blank'>{{tab.title}}</a>
+        </div>
       </div>
 
       <script src="lib/vue.js"></script> <!-- development version, includes helpful console warnings -->

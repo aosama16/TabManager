@@ -10,9 +10,15 @@ body {
     width: 15px;
     margin-right: 5px;
 }
+
+h2{
+    display: inline-block;
+}
+
 ul {
     list-style: none;
 }
+
 div {
     width: 100%;
 }
