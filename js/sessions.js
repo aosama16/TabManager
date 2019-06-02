@@ -62,7 +62,7 @@ let app = new Vue({
         },
         highlight(event){
             if(this.inDrag){
-                event.target.style.background = 'rgba(0,128,128,0.2)';
+                event.target.style.background = '#546e7a';
                 event.target.style.color = 'white';
             }
         },
@@ -130,6 +130,7 @@ let app = new Vue({
             }, 10);
         },
         scrollto(groupID){
+            this.clearSelectedTags();
             let el = document.querySelector(`.main [data-id='${groupID}']`);
             if(el)
                 el.scrollIntoView(true);
@@ -168,9 +169,16 @@ let app = new Vue({
             this.mergeTitle = '';
         },
         addTag(event){
+            let tagTitle = event.target.value;
+            if(this.state.tags.some(tag => tag.title.toLowerCase() == tagTitle.toLowerCase())){
+                M.toast({html: 'Tag already exists!', classes: 'rounded'})
+                event.target.value = '';
+                return;
+            }
+
             this.state.tags.push({
                 id: Utils.genID(),
-                title: event.target.value
+                title: tagTitle
             });
             event.target.value = '';
         },

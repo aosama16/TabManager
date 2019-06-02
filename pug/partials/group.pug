@@ -1,5 +1,5 @@
 draggable(v-model='state.groups', handle='.title-handle')
-    div(:class="merge.includes(group.id) ? 'group selected-group' : 'group'" 
+    div(class='group', :class="{'selected-group' : merge.includes(group.id)}" 
         v-for="group in filteredGroups" 
         :data-id='group.id')
         

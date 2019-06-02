@@ -1,32 +1,41 @@
-.sidenav
-    button(@click='deleteEmptyGroups') Delete empty groups
-    input(v-model='search' placeholder='Serch title...')
-    h3 GROUPS
-    .group-side(v-for='group in state.groups', @click='scrollto(group.id)')
-        div(:data-id='group.id', 
-            :class="inDrag ? 'sidenav-group drop-container' : 'sidenav-group'", 
+#search-wrapper
+    input.white-text(v-model='search' placeholder='Search title...')
+    i.material-icons.right search
+.section.groups
+    .valign-wrapper
+        h5.white-text.groups-header.unselectable GROUPS
+        a.waves-effect.waves-light.btn-small.red(@click='deleteEmptyGroups') 
+            i.material-icons.left delete 
+            span EMPTY
+    .clickable(v-for='group in state.groups', @click='scrollto(group.id)')
+        h6.group(:data-id='group.id', 
+            class='sidenav-group', :class="{'drop-container':inDrag}", 
             @dragover.prevent='', 
             @drop='moveTab', 
             @dragenter='highlight', 
             @dragleave='removeHighlight') {{group.title}}
-    div(:data-id='0', 
-        :class="inDrag ? 'sidenav-group drop-container' : 'sidenav-group'", 
+    h6.group.clickable.new-group(:data-id='0', 
+        class='sidenav-group', :class="{'drop-container':inDrag}", 
         @dragover.prevent='', 
         @drop='moveTabNewGroup', 
         @dragenter='highlight', 
         @dragleave='removeHighlight'
         v-if='inDrag') NEW GROUP
-    h3 TAGS
-    .clickable(v-if='state.tags.length != 0', 
-               @click='clearSelectedTags') ALL
-    .clickable(v-for='tag in state.tags')
-        input.editor(v-model='tag.title', 
-                        :placeholder='tag.title', 
-                        v-if='updateTagID == tag.id', 
-                        @keyup.enter="updateTagID = ''", 
-                        @blur="updateTagID = ''", 
-                        v-focus, v-resizable, type='text')
-        span(@click='addToSelectedTags(tag.id)', v-else='') {{tag.title}}
-        img.favicon(@click='updateTagID = tag.id', src='./images/rename.png')
-        img.favicon(@click='deleteTag(tag.id)', src='./images/delete.png')
-    h3.clickable.unselectable(@click='displayArchive') ARCHIVE
+
+.section
+    h5.white-text.unselectable TAGS
+    .clickable.unselectable.tag(@click='clearSelectedTags') 
+        h6 ALL
+    .clickable.unselectable.tag(v-for='tag in state.tags')
+        input.browser-default.editor(v-model='tag.title', 
+                                :placeholder='tag.title', 
+                                v-if='updateTagID == tag.id', 
+                                @keyup.enter="updateTagID = ''", 
+                                @blur="updateTagID = ''", 
+                                v-focus, v-resizable, type='text')
+        h6(@click='addToSelectedTags(tag.id)', v-else='') {{tag.title}}
+        i.tiny.material-icons.right.delete(@click='deleteTag(tag.id)') delete
+        i.tiny.material-icons.right(@click='updateTagID = tag.id') edit
+    input.white-text(placeholder='NEW TAG...', @keyup.enter='addTag', type='text')
+.section
+    h5.white-text.clickable.unselectable(@click='displayArchive') ARCHIVE

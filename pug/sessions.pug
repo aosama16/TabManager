@@ -4,8 +4,9 @@ html(lang="en")
 include partials/header
 body
   #app(v-cloak)
-    include partials/sidenav
     include partials/toolbar
+    .sidenav.sidenav-fixed.blue-grey.darken-4.grey-text.text-lighten-2
+      include partials/sidenav
     .main
       include partials/textHeader
       include partials/group

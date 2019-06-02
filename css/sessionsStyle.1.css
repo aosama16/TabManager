@@ -1,0 +1,244 @@
+[v-cloak]{
+    display: none;
+}
+
+.full-height {
+    height: 100%;
+    min-height: 1000px !important;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.favicon {
+    width: 15px;
+    margin-right: 5px;
+}
+ul {
+    list-style: none;
+}
+div {
+    width: 100%;
+}
+.clickable{
+    cursor: pointer;
+}
+
+.header-action{
+    margin: 0px 10px;
+}
+.hidden{
+    visibility: hidden;
+    width: 20px;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    margin: 6px 0px;
+}
+.tab:hover .hidden{
+    visibility: visible;
+}
+
+.tab a{
+    text-decoration: none;
+}
+
+input:checked + a{
+    color:gray;
+    text-decoration: line-through;
+}
+
+.descriptionText{
+    color:gray;
+    margin: 3px 0px;
+    cursor: pointer;
+}
+
+.visible{
+    width: 20px;
+}
+
+.tick{
+    width: 13px;
+}
+
+.sortable-chosen {
+    opacity: 0.7;
+}
+.sortable-ghost {
+    border: 2px dashed teal;
+    margin: 5px;
+    
+}
+
+.title{
+    display: inline;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.group{
+    margin-bottom: 20px;
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.date{
+    margin-left: 10px;
+}
+
+input.editor{
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    padding: 0px;
+    border: 0;
+    outline: none;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+input.editor.description{
+    display: block;
+    font-size: 1em;
+    margin: 3px 0px;
+}
+
+img.title-handle {
+    width: 20px;
+    cursor: move;
+}
+
+img.handle {
+    width: 15px;
+    cursor: move;
+}
+
+.sidenav {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 160px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #111; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+    color: #818181;
+}
+.sidenav{
+    padding-top: 60px;
+}
+/* The navigation menu links */
+.sidenav .sidenav-group {
+padding: 6px 8px 6px 16px;
+text-decoration: none;
+font-size: 15px;
+cursor: pointer;
+}
+.sidenav .drop-container{
+outline: 1px dashed teal;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav .sidenav-group:hover {
+color: #f1f1f1;
+}
+
+.sidenav {
+    transform: translateX(0%) !important;
+    width: 200px !important;
+}
+
+.group-side{
+    margin-bottom: 10px;
+}
+
+/* Style page content */
+.main {
+margin-left: 300px; /* Same as the width of the sidebar */
+padding: 0px 10px;
+padding-top: 40px;
+}
+
+.fixed-nav-bar {
+    position: fixed;
+    padding-top: 10px;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 50px;
+    background-color: #00a087;
+}
+
+.fixed-nav-bar  > *{
+  float: right;
+  display: block;
+}
+
+.selected-group{
+    background-color: rgba(0,128,128,0.7);
+    color: white;
+    border-radius: 5px;
+}
+
+.selected-group * {
+    color: white;
+}
+
+.show-more{
+    background-image: url("../images/more.png");
+    background-size: 17px;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    height: 25px;
+    width: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: rgba(211, 211, 211, 0.2);
+}
+
+.show-more:hover{
+    background-color: rgba(170, 170, 170, 0.2);
+}
+
+.dropdown {
+position: relative;
+display: inline-block;
+width: 15px;
+}
+
+.dropdown-content {
+display: none;
+position: absolute;
+background-color: #f6f6f6;
+width: 100px;
+overflow: auto;
+border: 1px solid #ddd;
+z-index: 1;
+}
+
+.dropdown-content a {
+color: black;
+padding: 5px 3px;
+text-decoration: none;
+display: block;
+cursor: pointer;
+}
+.dropdown-content input{
+    width: 95px;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}

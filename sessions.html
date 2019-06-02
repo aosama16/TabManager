@@ -5,28 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" type="text/css" href="css/sessionsStyle.css">
+  <link rel="stylesheet" href="css/material-icon.css">
+  <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
+  <script src="js/materialize.min.js"></script>
   <title>Saved Sessions</title>
 </head>
 <body>
   <div id="app" v-cloak>
-    <div class="sidenav">
-      <button @click="deleteEmptyGroups">Delete empty groups</button>
-      <input v-model="search" placeholder="Serch title...">
-      <h3>GROUPS</h3>
-      <div class="group-side" v-for="group in state.groups" @click="scrollto(group.id)">
-        <div :data-id="group.id" :class="inDrag ? 'sidenav-group drop-container' : 'sidenav-group'" @dragover.prevent="" @drop="moveTab" @dragenter="highlight" @dragleave="removeHighlight">{{group.title}}</div>
-      </div>
-      <div :data-id="0" :class="inDrag ? 'sidenav-group drop-container' : 'sidenav-group'" @dragover.prevent="" @drop="moveTabNewGroup" @dragenter="highlight" @dragleave="removeHighlight" v-if="inDrag">NEW GROUP</div>
-      <h3>TAGS</h3>
-      <div class="clickable" v-if="state.tags.length != 0" @click="clearSelectedTags">ALL</div>
-      <div class="clickable" v-for="tag in state.tags">
-        <input class="editor" v-model="tag.title" :placeholder="tag.title" v-if="updateTagID == tag.id" @keyup.enter="updateTagID = ''" @blur="updateTagID = ''" v-focus v-resizable type="text"><span @click="addToSelectedTags(tag.id)" v-else="">{{tag.title}}</span><img class="favicon" @click="updateTagID = tag.id" src="./images/rename.png"><img class="favicon" @click="deleteTag(tag.id)" src="./images/delete.png">
-      </div>
-      <h3 class="clickable unselectable" @click="displayArchive">ARCHIVE</h3>
-    </div>
     <div class="fixed-nav-bar" v-if="merge.length != 0">
       <button @click="mergeGroups">Merge</button>
       <input v-model="mergeTitle" @keyup.enter="mergeGroups" placeholder="New group title" type="text"><span>{{merge.length}} groups selected</span>
+    </div>
+    <div class="sidenav sidenav-fixed blue-grey darken-4 grey-text text-lighten-2">
+      <div id="search-wrapper">
+        <input class="white-text" v-model="search" placeholder="Search title..."><i class="material-icons right">search</i>
+      </div>
+      <div class="section groups">
+        <div class="valign-wrapper">
+          <h5 class="white-text groups-header unselectable">GROUPS</h5><a class="waves-effect waves-light btn-small red" @click="deleteEmptyGroups"> <i class="material-icons left">delete </i><span>EMPTY</span></a>
+        </div>
+        <div class="clickable" v-for="group in state.groups" @click="scrollto(group.id)">
+          <h6 class="group sidenav-group" :data-id="group.id" :class="{'drop-container':inDrag}" @dragover.prevent="" @drop="moveTab" @dragenter="highlight" @dragleave="removeHighlight">{{group.title}}</h6>
+        </div>
+        <h6 class="group clickable new-group sidenav-group" :data-id="0" :class="{'drop-container':inDrag}" @dragover.prevent="" @drop="moveTabNewGroup" @dragenter="highlight" @dragleave="removeHighlight" v-if="inDrag">NEW GROUP</h6>
+      </div>
+      <div class="section">
+        <h5 class="white-text unselectable">TAGS</h5>
+        <div class="clickable unselectable tag" @click="clearSelectedTags"> 
+          <h6>ALL</h6>
+        </div>
+        <div class="clickable unselectable tag" v-for="tag in state.tags">
+          <input class="browser-default editor" v-model="tag.title" :placeholder="tag.title" v-if="updateTagID == tag.id" @keyup.enter="updateTagID = ''" @blur="updateTagID = ''" v-focus v-resizable type="text">
+          <h6 @click="addToSelectedTags(tag.id)" v-else="">{{tag.title}}</h6><i class="tiny material-icons right delete" @click="deleteTag(tag.id)">delete</i><i class="tiny material-icons right" @click="updateTagID = tag.id">edit</i>
+        </div>
+        <input class="white-text" placeholder="NEW TAG..." @keyup.enter="addTag" type="text">
+      </div>
+      <div class="section">
+        <h5 class="white-text clickable unselectable" @click="displayArchive">ARCHIVE</h5>
+      </div>
     </div>
     <div class="main">
       <h3 v-if="selectedTags.length != 0">Filtered by tag: {{selectedTag}}</h3>
@@ -35,7 +51,7 @@
       <h3 v-if="state.groups.length == 0">There are no saved sessions!</h3>
       <button @click="createNewGroup">Add Group</button>
       <draggable v-model="state.groups" handle=".title-handle">
-        <div :class="merge.includes(group.id) ? 'group selected-group' : 'group'" v-for="group in filteredGroups" :data-id="group.id"><img class="title-handle" src="images/handle.png">
+        <div class="group" :class="{'selected-group' : merge.includes(group.id)}" v-for="group in filteredGroups" :data-id="group.id"><img class="title-handle" src="images/handle.png">
           <input class="editor" v-model="group.title" :placeholder="group.title" v-if="updateGroupID == group.id" @keyup.enter="updateGroupID = ''" @blur="updateGroupID = ''" v-focus v-resizable type="text">
           <h2 class="title unselectable" @dblclick="updateGroupID = group.id" v-else="">{{group.title}}</h2>
           <h3 class="title unselectable">{{ group.tabs.length }} tabs</h3><span class="header-action clickable unselectable" @click="deleteGroup(group.id)">Delete Group</span><span class="header-action clickable unselectable" @click="openAlltabs(group.id)">Open all tabs</span><span class="header-action clickable unselectable" @click="archiveGroup(group.id)" v-if="filter != &quot;archive&quot;">Archive Group</span><span class="date">Created on {{group.date}}</span>
@@ -49,7 +65,7 @@
           <input class="editor description" v-model="group.description" :placeholder="group.description" v-if="updateGroupDescription == group.id" @keyup.enter="updateGroupDescription = ''" @blur="updateGroupDescription = ''" v-focus v-resizable type="text">
           <h4 class="unselectable descriptionText" @dblclick="updateGroupDescription = group.id" v-else>{{group.description}}</h4>
           <draggable v-model="group.tabs" group="session" handle=".handle" @start="saveID" @end="endDrag">
-            <div class="tab unselectable" v-for="tab in filteredTabs(group.tabs)" :data-id="tab.id"><img class="clickable hidden" @click="deleteTab(group.id, tab.id)" src="./images/delete.png"><img @click="starTab(group.id, tab.id)" :class="tab.starred ? 'clickable visible' : 'clickable hidden'" :src="tab.starred ? './images/starred.png' : './images/star-empty.png'"><img class="handle" src="images/handle.png"><img class="favicon" :src="getFavicon(tab)">
+            <div class="tab unselectable" v-for="tab in filteredTabs(group.tabs)" :data-id="tab.id"><img class="clickable hidden" @click="deleteTab(group.id, tab.id)" src="./images/delete.png"><img class="clickable" @click="starTab(group.id, tab.id)" :class="tab.starred ? 'visible' : 'hidden'" :src="tab.starred ? './images/starred.png' : './images/star-empty.png'"><img class="handle" src="images/handle.png"><img class="favicon" :src="getFavicon(tab)">
               <input type="checkbox" v-model="tab.checked"><a :href="tab.url" target="_blank">{{tab.title}}</a>
             </div>
           </draggable>
