@@ -1,0 +1,66 @@
+.sidenav {
+    transform: translateX(0%) !important;
+    padding: 50px 20px;
+
+    #search-wrapper i{
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        cursor: default;
+    }
+    
+    .section{
+        margin-bottom: 20px;
+    }
+    
+    .item{
+        display:block;
+        font-size: 1rem;
+        margin: 10px 0px;
+        padding: 5px 5px;
+    }
+    
+    
+    .clickable *:hover{
+        color:white;
+    }
+    
+    #groups{
+        .title{
+            display: inline-block;
+            margin: 0;
+            margin-right: 20px;
+        }
+
+        .item{
+            border-radius: 5px;
+        }
+
+        .item.drop-container{
+            background-color: #455a64;
+        }
+    }
+
+    #tags{
+        .item{
+            display: inline-block;
+            margin: 5px 0px;
+        }
+        
+        input.editor{
+            padding: 5px 5px;
+            margin: 5px 0px;
+            border: 0;
+            outline: none;
+            color: white;
+            font-size: 1rem;
+            line-height: 110%;
+            background-color: #263238;
+        }
+        
+        i{
+            margin: 5px 0px;
+            padding: 5px 5px;
+        }
+    }
+}

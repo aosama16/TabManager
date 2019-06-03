@@ -131,9 +131,11 @@ let app = new Vue({
         },
         scrollto(groupID){
             this.clearSelectedTags();
-            let el = document.querySelector(`.main [data-id='${groupID}']`);
-            if(el)
-                el.scrollIntoView(true);
+            setTimeout(() => { // Set timout to let filter finish then scroll
+                let el = document.querySelector(`.main [data-id='${groupID}']`);
+                if(el)
+                    el.scrollIntoView(true);
+            }, 10);
         },
         addToMerge(groupID){
             if(this.merge.includes(groupID)){

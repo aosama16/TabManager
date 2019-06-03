@@ -20,28 +20,28 @@
       <div id="search-wrapper">
         <input class="white-text" v-model="search" placeholder="Search title..."><i class="material-icons right">search</i>
       </div>
-      <div class="section groups">
+      <div class="section" id="groups">
         <div class="valign-wrapper">
-          <h5 class="white-text groups-header unselectable">GROUPS</h5><a class="waves-effect waves-light btn-small red" @click="deleteEmptyGroups"> <i class="material-icons left">delete </i><span>EMPTY</span></a>
+          <h5 class="white-text unselectable title">GROUPS</h5><a class="waves-effect waves-light btn-small red" @click="deleteEmptyGroups"> <i class="material-icons left">delete </i><span>EMPTY</span></a>
         </div>
         <div class="clickable" v-for="group in state.groups" @click="scrollto(group.id)">
-          <h6 class="group sidenav-group" :data-id="group.id" :class="{'drop-container':inDrag}" @dragover.prevent="" @drop="moveTab" @dragenter="highlight" @dragleave="removeHighlight">{{group.title}}</h6>
+          <h6 class="item" :data-id="group.id" :class="{'drop-container':inDrag}" @dragover.prevent="" @drop="moveTab" @dragenter="highlight" @dragleave="removeHighlight">{{group.title}}</h6>
         </div>
-        <h6 class="group clickable new-group sidenav-group" :data-id="0" :class="{'drop-container':inDrag}" @dragover.prevent="" @drop="moveTabNewGroup" @dragenter="highlight" @dragleave="removeHighlight" v-if="inDrag">NEW GROUP</h6>
+        <h6 class="item clickable center" :data-id="0" :class="{'drop-container':inDrag}" @dragover.prevent="" @drop="moveTabNewGroup" @dragenter="highlight" @dragleave="removeHighlight" v-if="inDrag">NEW GROUP</h6>
       </div>
-      <div class="section">
-        <h5 class="white-text unselectable">TAGS</h5>
-        <div class="clickable unselectable tag" @click="clearSelectedTags"> 
-          <h6>ALL</h6>
+      <div class="section" id="tags">
+        <h5 class="white-text unselectable title">TAGS</h5>
+        <div class="clickable unselectable" @click="clearSelectedTags"> 
+          <h6 class="item">ALL</h6>
         </div>
-        <div class="clickable unselectable tag" v-for="tag in state.tags">
+        <div class="clickable unselectable" v-for="tag in state.tags">
           <input class="browser-default editor" v-model="tag.title" :placeholder="tag.title" v-if="updateTagID == tag.id" @keyup.enter="updateTagID = ''" @blur="updateTagID = ''" v-focus v-resizable type="text">
-          <h6 @click="addToSelectedTags(tag.id)" v-else="">{{tag.title}}</h6><i class="tiny material-icons right delete" @click="deleteTag(tag.id)">delete</i><i class="tiny material-icons right" @click="updateTagID = tag.id">edit</i>
+          <h6 class="item" @click="addToSelectedTags(tag.id)" v-else="">{{tag.title}}</h6><i class="tiny material-icons right delete" @click="deleteTag(tag.id)">delete</i><i class="tiny material-icons right" @click="updateTagID = tag.id">edit</i>
         </div>
         <input class="white-text" placeholder="NEW TAG..." @keyup.enter="addTag" type="text">
       </div>
-      <div class="section">
-        <h5 class="white-text clickable unselectable" @click="displayArchive">ARCHIVE</h5>
+      <div class="section" id="archive">
+        <h5 class="white-text clickable unselectable title" @click="displayArchive">ARCHIVE</h5>
       </div>
     </div>
     <div class="main">

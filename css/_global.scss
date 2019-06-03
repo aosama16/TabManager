@@ -1,0 +1,31 @@
+[v-cloak]{
+    display: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+#toast-container {
+    top: auto !important;
+    right: auto !important;
+    bottom: 10%;
+    left:50%;  
+}
+
+.clickable{
+    cursor: pointer;
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+i.delete:hover{
+    color: #f44336 !important;
+}

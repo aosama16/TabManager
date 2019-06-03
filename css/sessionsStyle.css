@@ -1,100 +1,89 @@
-[v-cloak]{
-    display: none;
+[v-cloak] {
+  display: none;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 #toast-container {
-    top: auto !important;
-    right: auto !important;
-    bottom: 10%;
-    left:50%;  
+  top: auto !important;
+  right: auto !important;
+  bottom: 10%;
+  left: 50%;
 }
 
-.sidenav {
-    transform: translateX(0%) !important;
-    padding-top: 50px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-.sidenav .tag{
-    margin: 10px 0px;
-    padding: 5px 5px;
-    padding-right: 20px;
-}
-
-.sidenav .tag input.editor{
-    padding: 0px;
-    border: 0;
-    outline: none;
-    color: white;
-    font-size: 1rem;
-    line-height: 110%;
-    background-color: #263238;
-}
-
-.sidenav h6{
-    display: inline-block;
-    margin: 0;
-    font-size: 1rem;
-}
-
-.groups h6{
-    display:block;
-    font-size: 1rem;
-}
-
-.sidenav .section{
-    margin-bottom: 20px;
-}
-
-.sidenav .clickable *:hover{
-    color:white;
-}
-
-i.delete:hover{
-    color: red !important;
-}
-
-.sidenav .section .groups-header{
-    display: inline;
-    margin: 0;
-    margin-right: 20px;
-}
-
-#search-wrapper i{
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    cursor: pointer;
-}
-
-.main {
-    margin-left: 300px;
-}
-
-.clickable{
-    cursor: pointer;
+.clickable {
+  cursor: pointer;
 }
 
 .unselectable {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-.sidenav .group{
-    border-radius: 5px;
-    margin: 10px 0px;
-    padding: 5px 5px;
+i.delete:hover {
+  color: #f44336 !important;
 }
 
-.sidenav .groups .drop-container{
-    background-color: #455a64;
+.sidenav {
+  transform: translateX(0%) !important;
+  padding: 50px 20px;
 }
+.sidenav #search-wrapper i {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  cursor: default;
+}
+.sidenav .section {
+  margin-bottom: 20px;
+}
+.sidenav .item {
+  display: block;
+  font-size: 1rem;
+  margin: 10px 0px;
+  padding: 5px 5px;
+}
+.sidenav .clickable *:hover {
+  color: white;
+}
+.sidenav #groups .title {
+  display: inline-block;
+  margin: 0;
+  margin-right: 20px;
+}
+.sidenav #groups .item {
+  border-radius: 5px;
+}
+.sidenav #groups .item.drop-container {
+  background-color: #455a64;
+}
+.sidenav #tags .item {
+  display: inline-block;
+  margin: 5px 0px;
+}
+.sidenav #tags input.editor {
+  padding: 5px 5px;
+  margin: 5px 0px;
+  border: 0;
+  outline: none;
+  color: white;
+  font-size: 1rem;
+  line-height: 110%;
+  background-color: #263238;
+}
+.sidenav #tags i {
+  margin: 5px 0px;
+  padding: 5px 5px;
+}
+
+.main {
+  margin-left: 300px;
+}
+
+/*# sourceMappingURL=sessionsStyle.css.map */
