@@ -146,6 +146,9 @@ let app = new Vue({
                 this.merge.push(groupID);
             }
         },
+        cancelMergeSelection(){
+            this.merge = [];
+        },
         mergeGroups(){
             let groups = [];
             for(groupID of this.merge){

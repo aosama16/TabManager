@@ -121,6 +121,14 @@ i.delete:hover {
   margin-left: auto;
   z-index: 1;
 }
+#toolbar i {
+  margin-left: 20px;
+  cursor: pointer;
+  color: #414141;
+}
+#toolbar i:hover {
+  color: white;
+}
 #toolbar li {
   margin-left: 25px;
 }

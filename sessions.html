@@ -43,7 +43,7 @@
     <div class="main">
       <transition name="slide-fade">
         <nav id="toolbar" v-if="merge.length != 0">
-          <div class="nav-wrapper">
+          <div class="nav-wrapper"><i class="material-icons left" @click="cancelMergeSelection">close</i>
             <ul class="right">
               <li><span class="white-text text">{{merge.length}} groups selected</span></li>
               <li>

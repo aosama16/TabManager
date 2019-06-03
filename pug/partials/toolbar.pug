@@ -1,6 +1,7 @@
 transition(name='slide-fade')
   nav#toolbar(v-if='merge.length != 0')
     .nav-wrapper
+      i.material-icons.left(@click='cancelMergeSelection') close
       ul.right
         li
           span.white-text.text {{merge.length}} groups selected

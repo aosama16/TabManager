@@ -9,6 +9,17 @@
     margin-left: auto;
     z-index: 1;
 
+    i {
+
+        margin-left: 20px;
+        cursor: pointer;
+        color: rgb(65, 65, 65);
+
+        &:hover{
+            color: white;
+        }
+    }
+
     li{
         margin-left: 25px;
         
