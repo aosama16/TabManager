@@ -1,6 +1,10 @@
 .sidenav {
+    $item-font-size: 0.8rem;
+    $title-font-size: $item-font-size *1.5;
+
     transform: translateX(0%) !important;
     padding: 50px 20px;
+    width: 250px !important;
 
     #search-wrapper i{
         position: absolute;
@@ -15,11 +19,14 @@
     
     .item{
         display:block;
-        font-size: 1rem;
+        font-size: $item-font-size;
         margin: 10px 0px;
         padding: 5px 5px;
     }
     
+    .title{
+        font-size: $title-font-size;
+    }
     
     .clickable *:hover{
         color:white;
@@ -28,8 +35,8 @@
     #groups{
         .title{
             display: inline-block;
+            line-height: 200%;
             margin: 0;
-            margin-right: 20px;
         }
 
         .item{
@@ -46,14 +53,20 @@
             display: inline-block;
             margin: 5px 0px;
         }
-        
+
+        input{
+            font-size: $item-font-size;
+            height: 20px;
+            padding: 5px 5px;
+        }
+
         input.editor{
             padding: 5px 5px;
             margin: 5px 0px;
             border: 0;
             outline: none;
             color: white;
-            font-size: 1rem;
+            font-size: $item-font-size;
             line-height: 110%;
             background-color: #263238;
         }

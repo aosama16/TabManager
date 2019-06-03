@@ -21,8 +21,8 @@
         <input class="white-text" v-model="search" placeholder="Search title..."><i class="material-icons right">search</i>
       </div>
       <div class="section" id="groups">
-        <div class="valign-wrapper">
-          <h5 class="white-text unselectable title">GROUPS</h5><a class="waves-effect waves-light btn-small red" @click="deleteEmptyGroups"> <i class="material-icons left">delete </i><span>EMPTY</span></a>
+        <div class="clearfix">
+          <h5 class="white-text unselectable title left">GROUPS</h5><a class="waves-effect waves-light btn-small red right" @click="deleteEmptyGroups"> <i class="material-icons left">delete </i><span>EMPTY</span></a>
         </div>
         <div class="clickable" v-for="group in state.groups" @click="scrollto(group.id)">
           <h6 class="item" :data-id="group.id" :class="{'drop-container':inDrag}" @dragover.prevent="" @drop="moveTab" @dragenter="highlight" @dragleave="removeHighlight">{{group.title}}</h6>

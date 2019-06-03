@@ -3,9 +3,9 @@
     i.material-icons.right search
 
 #groups.section
-    .valign-wrapper
-        h5.white-text.unselectable.title GROUPS
-        a.waves-effect.waves-light.btn-small.red(@click='deleteEmptyGroups') 
+    .clearfix
+        h5.white-text.unselectable.title.left GROUPS
+        a.waves-effect.waves-light.btn-small.red.right(@click='deleteEmptyGroups') 
             i.material-icons.left delete 
             span EMPTY
     .clickable(v-for='group in state.groups', @click='scrollto(group.id)')

@@ -30,9 +30,14 @@ i.delete:hover {
   color: #f44336 !important;
 }
 
+.clearfix {
+  overflow: auto;
+}
+
 .sidenav {
   transform: translateX(0%) !important;
   padding: 50px 20px;
+  width: 250px !important;
 }
 .sidenav #search-wrapper i {
   position: absolute;
@@ -45,17 +50,20 @@ i.delete:hover {
 }
 .sidenav .item {
   display: block;
-  font-size: 1rem;
+  font-size: 0.8rem;
   margin: 10px 0px;
   padding: 5px 5px;
+}
+.sidenav .title {
+  font-size: 1.2rem;
 }
 .sidenav .clickable *:hover {
   color: white;
 }
 .sidenav #groups .title {
   display: inline-block;
+  line-height: 200%;
   margin: 0;
-  margin-right: 20px;
 }
 .sidenav #groups .item {
   border-radius: 5px;
@@ -67,13 +75,18 @@ i.delete:hover {
   display: inline-block;
   margin: 5px 0px;
 }
+.sidenav #tags input {
+  font-size: 0.8rem;
+  height: 20px;
+  padding: 5px 5px;
+}
 .sidenav #tags input.editor {
   padding: 5px 5px;
   margin: 5px 0px;
   border: 0;
   outline: none;
   color: white;
-  font-size: 1rem;
+  font-size: 0.8rem;
   line-height: 110%;
   background-color: #263238;
 }
