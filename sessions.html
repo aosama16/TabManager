@@ -54,11 +54,13 @@
           </div>
         </nav>
       </transition>
-      <h3 v-if="selectedTags.length != 0">Filtered by tag: {{selectedTag}}</h3>
-      <h3 v-if="search.length != 0">Search results for {{search}}</h3>
-      <h1>Saved Sessions - There are {{tabsNumber}} saved tabs.</h1>
-      <h3 v-if="state.groups.length == 0">There are no saved sessions!</h3>
-      <button @click="createNewGroup">Add Group</button>
+      <div id="head-text">
+        <h4>Saved Sessions - There are {{tabsNumber}} saved tabs.</h4>
+        <h6 v-if="selectedTags.length != 0">Filtered by tag: {{selectedTag}}</h6>
+        <h6 v-if="search.length != 0">Search results for {{search}}</h6>
+        <h6 v-if="state.groups.length == 0">There are no saved sessions!</h6><a class="btn-floating btn-large waves-effect waves-light green" @click="createNewGroup"><i class="material-icons">add</i></a>
+        <div class="divider"></div>
+      </div>
       <draggable v-model="state.groups" handle=".title-handle">
         <div class="group" :class="{'selected-group' : merge.includes(group.id)}" v-for="group in filteredGroups" :data-id="group.id"><img class="title-handle" src="images/handle.png">
           <input class="editor" v-model="group.title" :placeholder="group.title" v-if="updateGroupID == group.id" @keyup.enter="updateGroupID = ''" @blur="updateGroupID = ''" v-focus v-resizable type="text">

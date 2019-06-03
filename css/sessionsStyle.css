@@ -152,4 +152,17 @@ i.delete:hover {
   margin-left: 300px;
 }
 
+#head-text h6 {
+  display: inline-block;
+  margin-right: 20px;
+}
+#head-text .divider {
+  margin-top: 20px;
+}
+#head-text a {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+}
+
 /*# sourceMappingURL=sessionsStyle.css.map */
