@@ -30,9 +30,9 @@
         <div class="clickable unselectable" @click="clearSelectedTags"> 
           <h6 class="item">ALL</h6>
         </div>
-        <div class="clickable unselectable" v-for="tag in state.tags">
+        <div class="clickable unselectable clearfix" v-for="tag in state.tags">
           <input class="browser-default editor" v-model="tag.title" :placeholder="tag.title" v-if="updateTagID == tag.id" @keyup.enter="updateTagID = ''" @blur="updateTagID = ''" v-focus v-resizable type="text">
-          <h6 class="item" @click="addToSelectedTags(tag.id)" v-else="">{{tag.title}}</h6><i class="tiny material-icons right delete" @click="deleteTag(tag.id)">delete</i><i class="tiny material-icons right" @click="updateTagID = tag.id">edit</i>
+          <h6 class="item left" @click="addToSelectedTags(tag.id)" v-else="">{{tag.title}}</h6><i class="tiny material-icons right delete" @click="deleteTag(tag.id)">delete</i><i class="tiny material-icons right" @click="updateTagID = tag.id">edit</i>
         </div>
         <input class="white-text" placeholder="NEW TAG..." @keyup.enter="addTag" type="text">
       </div>

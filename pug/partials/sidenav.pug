@@ -27,14 +27,14 @@
     h5.white-text.unselectable.title TAGS
     .clickable.unselectable(@click='clearSelectedTags') 
         h6.item ALL
-    .clickable.unselectable(v-for='tag in state.tags')
+    .clickable.unselectable.clearfix(v-for='tag in state.tags')
         input.browser-default.editor(v-model='tag.title', 
                                 :placeholder='tag.title', 
                                 v-if='updateTagID == tag.id', 
                                 @keyup.enter="updateTagID = ''", 
                                 @blur="updateTagID = ''", 
                                 v-focus, v-resizable, type='text')
-        h6.item(@click='addToSelectedTags(tag.id)', v-else='') {{tag.title}}
+        h6.item.left(@click='addToSelectedTags(tag.id)', v-else='') {{tag.title}}
         i.tiny.material-icons.right.delete(@click='deleteTag(tag.id)') delete
         i.tiny.material-icons.right(@click='updateTagID = tag.id') edit
     input.white-text(placeholder='NEW TAG...', @keyup.enter='addTag', type='text')
