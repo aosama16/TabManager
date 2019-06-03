@@ -12,10 +12,6 @@
 </head>
 <body>
   <div id="app" v-cloak>
-    <div class="fixed-nav-bar" v-if="merge.length != 0">
-      <button @click="mergeGroups">Merge</button>
-      <input v-model="mergeTitle" @keyup.enter="mergeGroups" placeholder="New group title" type="text"><span>{{merge.length}} groups selected</span>
-    </div>
     <div class="sidenav sidenav-fixed blue-grey darken-4 grey-text text-lighten-2">
       <div id="search-wrapper">
         <input class="white-text" v-model="search" placeholder="Search title..."><i class="material-icons right">search</i>
@@ -45,6 +41,19 @@
       </div>
     </div>
     <div class="main">
+      <transition name="slide-fade">
+        <nav id="toolbar" v-if="merge.length != 0">
+          <div class="nav-wrapper">
+            <ul class="right">
+              <li><span class="white-text text">{{merge.length}} groups selected</span></li>
+              <li>
+                <input class="white-text" v-model="mergeTitle" @keyup.enter="mergeGroups" placeholder="New group title" type="text">
+              </li>
+              <li><a class="waves-effect waves-light btn-flat white-text" @click="mergeGroups">Merge</a></li>
+            </ul>
+          </div>
+        </nav>
+      </transition>
       <h3 v-if="selectedTags.length != 0">Filtered by tag: {{selectedTag}}</h3>
       <h3 v-if="search.length != 0">Search results for {{search}}</h3>
       <h1>Saved Sessions - There are {{tabsNumber}} saved tabs.</h1>
