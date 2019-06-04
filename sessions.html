@@ -78,7 +78,7 @@
           </div>
           <div class="description">
             <input class="browser-default editor" v-model="group.description" :placeholder="group.description" v-if="updateGroupDescription == group.id" @keyup.enter="updateGroupDescription = ''" @blur="updateGroupDescription = ''" v-focus v-resizable type="text">
-            <h6 class="unselectable descriptionText" @dblclick="updateGroupDescription = group.id" v-else>{{group.description}}</h6>
+            <h6 class="unselectable descriptionText" @dblclick="updateGroupDescription = group.id" v-else>{{group.description}}</h6><i class="tiny material-icons edit" @click="updateGroupDescription = group.id">edit</i>
           </div>
           <div id="tabs">
             <draggable v-model="group.tabs" group="session" handle=".tab-handle" @start="saveID" @end="endDrag">

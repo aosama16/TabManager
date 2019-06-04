@@ -3,6 +3,15 @@
   padding-bottom: 20px;
   margin-bottom: 30px;
   
+  i.edit {
+    cursor: pointer;
+    color: #607d8b;
+
+    &:hover {
+      color: #b0bec5 !important;
+    }
+  }
+
   h5{
     font-size: 1.64rem;
     line-height: 110%;
@@ -32,14 +41,7 @@
       margin: 5px 10px;
     }
 
-    i.edit {
-      cursor: pointer;
-      color: #607d8b;
-
-      &:hover {
-        color: #b0bec5 !important;
-      }
-    }
+    
   }
 
   a{
@@ -48,8 +50,14 @@
 
   .description{
     padding-left: 10px;
+    margin-bottom: 5px;
+    
+    * {
+      margin: 0 10px;
+    }
 
     .descriptionText{
+      display: inline-block;
       cursor: pointer;
       color: gray;
     }

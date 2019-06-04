@@ -193,6 +193,13 @@ i.delete:hover {
   padding-bottom: 20px;
   margin-bottom: 30px;
 }
+.group i.edit {
+  cursor: pointer;
+  color: #607d8b;
+}
+.group i.edit:hover {
+  color: #b0bec5 !important;
+}
 .group h5 {
   font-size: 1.64rem;
   line-height: 110%;
@@ -217,20 +224,18 @@ i.delete:hover {
 .group .header * {
   margin: 5px 10px;
 }
-.group .header i.edit {
-  cursor: pointer;
-  color: #607d8b;
-}
-.group .header i.edit:hover {
-  color: #b0bec5 !important;
-}
 .group a {
   z-index: 0;
 }
 .group .description {
   padding-left: 10px;
+  margin-bottom: 5px;
+}
+.group .description * {
+  margin: 0 10px;
 }
 .group .description .descriptionText {
+  display: inline-block;
   cursor: pointer;
   color: gray;
 }

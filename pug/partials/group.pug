@@ -45,6 +45,7 @@ draggable(v-model='state.groups', handle='.group-handle')
                                     @blur="updateGroupDescription = ''", 
                                     v-focus, v-resizable, type='text')
             h6.unselectable.descriptionText(@dblclick='updateGroupDescription = group.id', v-else) {{group.description}}
+            i.tiny.material-icons.edit(@click='updateGroupDescription = group.id') edit
         
         //- Tabs
         include tab
