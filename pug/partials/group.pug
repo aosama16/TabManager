@@ -13,7 +13,7 @@ draggable(v-model='state.groups', handle='.group-handle')
                                   @blur="updateGroupID = ''", 
                                   v-focus, v-resizable, type='text')
             h5.unselectable(@dblclick='updateGroupID = group.id', v-else='') {{group.title}}
-            i.tiny.material-icons(@click='updateGroupID = group.id') edit
+            i.tiny.material-icons.edit(@click='updateGroupID = group.id') edit
             //- Select Button
             a.selectbtn.waves-effect.waves-light.btn-small.orange.lighten-2(@click='addToMerge($event, group.id)') Select
             

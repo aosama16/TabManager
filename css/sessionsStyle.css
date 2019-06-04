@@ -217,11 +217,11 @@ i.delete:hover {
 .group .header * {
   margin: 5px 10px;
 }
-.group .header i {
+.group .header i.edit {
   cursor: pointer;
   color: #607d8b;
 }
-.group .header i:hover {
+.group .header i.edit:hover {
   color: #b0bec5 !important;
 }
 .group a {

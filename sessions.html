@@ -62,7 +62,7 @@
         <div class="group" :class="{'selected-group' : merge.includes(group.id)}" v-for="group in filteredGroups" :data-id="group.id">
           <div class="valign-wrapper header"><i class="material-icons group-handle">drag_handle</i>
             <input class="browser-default editor" v-model="group.title" :placeholder="group.title" v-if="updateGroupID == group.id" @keyup.enter="updateGroupID = ''" @blur="updateGroupID = ''" v-focus v-resizable type="text">
-            <h5 class="unselectable" @dblclick="updateGroupID = group.id" v-else="">{{group.title}}</h5><i class="tiny material-icons" @click="updateGroupID = group.id">edit</i><a class="selectbtn waves-effect waves-light btn-small orange lighten-2" @click="addToMerge($event, group.id)">Select</a>
+            <h5 class="unselectable" @dblclick="updateGroupID = group.id" v-else="">{{group.title}}</h5><i class="tiny material-icons edit" @click="updateGroupID = group.id">edit</i><a class="selectbtn waves-effect waves-light btn-small orange lighten-2" @click="addToMerge($event, group.id)">Select</a>
             <div class="dropdown">
               <div class="show-more" @click="showTagMenu"><i class="unselectable tiny white-text material-icons">details</i></div>
               <div class="dropdown-content">

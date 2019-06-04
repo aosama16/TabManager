@@ -2,12 +2,11 @@ let app = new Vue({
     el: '#app',
     data: Utils.defaultEmptyState,
     mounted(){
+        // Update state
         this.getState();
+
+        // Update state when tab is in focus again
         window.addEventListener("focus", this.getState);
-        setTimeout(()=> {
-            let elems = document.querySelectorAll('select');
-            M.FormSelect.init(elems);
-        });
     },
     methods:{
         getState(){
@@ -214,7 +213,21 @@ let app = new Vue({
             }
             if(openedMenu == false){
                 event.currentTarget.nextElementSibling.classList.add('show');
+                
+                // Close dropdown when clicked away
+                document.addEventListener("click", this.hideTagMenu);
             }
+        },
+        hideTagMenu(event){
+            // If user clicks inside the element, do nothing
+            if (event.target.closest(".dropdown")) return;
+        
+            // If user clicks outside the element, hide it!
+            let allElements = Array.from(document.querySelectorAll('.show'))
+            for (let element of allElements) {
+                element.classList.remove('show')
+            }
+            document.removeEventListener("click", this.hideTagMenu);
         },
         toggleTagInGroup(groupID, tagID){
             let groupIDX = this.state.groups.findIndex(group => group.id == groupID);
