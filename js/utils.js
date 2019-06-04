@@ -44,7 +44,7 @@ class Utils {
     static createTab(title, url, date){
         return {
             id: Utils.genID(),
-            title: title,
+            title: title || 'Untitled',
             url: url,
             date: date,
             starred: false,
@@ -64,7 +64,6 @@ class Utils {
 Utils.defaultEmptyState = {
     state: {
         groups: [],
-        archive: [],
         tags: []
     },
     merge:[],

@@ -13,6 +13,7 @@ draggable(v-model='state.groups', handle='.group-handle')
                                   @blur="updateGroupID = ''", 
                                   v-focus, v-resizable, type='text')
             h5.unselectable(@dblclick='updateGroupID = group.id', v-else='') {{group.title}}
+            i.tiny.material-icons(@click='updateGroupID = group.id') edit
             //- Select Button
             a.selectbtn.waves-effect.waves-light.btn-small.orange.lighten-2(@click='addToMerge($event, group.id)') Select
             
@@ -22,22 +23,18 @@ draggable(v-model='state.groups', handle='.group-handle')
                     i.unselectable.tiny.white-text.material-icons details
                 .dropdown-content
                     .unselectable.tag(@click='toggleTagInGroup(group.id, tag.id)', v-for='tag in state.tags')
-                        //- img.tick(v-if='group.tags.includes(tag.id)', src='./images/tick.png', alt='')
                         transition(name='slide-fade-x')
                             i.tiny.material-icons(v-if='group.tags.includes(tag.id)') check
                         span {{tag.title}}
                     input(placeholder='NEW TAG...', @keyup.enter='addTag', type='text')
         
-            
         .valign-wrapper.header
             //- Group Header Actions
             h6.unselectable {{ group.tabs.length }} tabs
             span.header-action.clickable.unselectable(@click='deleteGroup(group.id)') Delete Group
             span.header-action.clickable.unselectable(@click='openAlltabs(group.id)') Open all tabs
-            span.header-action.clickable.unselectable(@click='archiveGroup(group.id)', v-if='filter != "archive"') Archive Group
+            //- span.header-action.clickable.unselectable(@click='archiveGroup(group.id)') Archive Group
             span.date Created on {{group.date}}
-        
-        
         
         //- Group Description
         .description

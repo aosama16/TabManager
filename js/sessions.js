@@ -42,14 +42,8 @@ let app = new Vue({
         },
         deleteGroup(groupID){
             if(confirm("Do you really want to delete this group?")){
-                if(this.filter == 'archive'){
-                    let groupIDX = this.state.archive.findIndex(group => group.id == groupID);
-                    this.state.archive.splice(groupIDX, 1);
-
-                }else{
-                    let groupIDX = this.state.groups.findIndex(group => group.id == groupID);
-                    this.state.groups.splice(groupIDX, 1);
-                }
+                let groupIDX = this.state.groups.findIndex(group => group.id == groupID);
+                this.state.groups.splice(groupIDX, 1);
             }
         },
         openAlltabs(groupID){
@@ -57,12 +51,16 @@ let app = new Vue({
             for(tab of this.state.groups[groupIDX].tabs)
                 chrome.tabs.create({url: tab.url});
         },
-        archiveGroup(groupID){
-            let groupIDX = this.state.groups.findIndex(group => group.id == groupID);
-            let archive = this.state.groups.splice(groupIDX, 1)[0];
+        // archiveGroup(groupID){
+        //     let groupIDX = this.state.groups.findIndex(group => group.id == groupID);
+        //     let archive = this.state.groups.splice(groupIDX, 1)[0];
 
-            this.state.archive.push(archive);
-        },
+        //     for(tab of archive.tabs){
+        //         tab.starred = false;
+        //     }
+
+        //     this.state.archive.push(archive);
+        // },
         saveID(event){
             this.movedID = event.item.attributes['data-id'].textContent;
             this.inDrag = true;
@@ -188,6 +186,10 @@ let app = new Vue({
             });
             this.merge = [];
             this.mergeTitle = '';
+            let selectbtns = document.getElementsByClassName("selectbtn");
+            for(btn of selectbtns){
+                btn.textContent = 'SELECT';
+            }
         },
         addTag(event){
             let tagTitle = event.target.value;
@@ -261,9 +263,9 @@ let app = new Vue({
         createNewGroup(){
             this.state.groups.push(Utils.createGroup(Utils.getCurrentDate()));
         },
-        displayArchive(){
-            this.filter = 'archive';
-        },
+        // displayArchive(){
+        //     this.filter = 'archive';
+        // },
         filteredTabs(tabs){
             return tabs.filter(tab => tab.title.toLowerCase().includes(this.search.toLowerCase()));
         }
@@ -293,9 +295,9 @@ let app = new Vue({
                 });
                 return filtered;
             }
-            else if (this.filter == 'archive'){
-                return this.state.archive;
-            }
+            // else if (this.filter == 'archive'){
+            //     return this.state.archive;
+            // }
         },
         selectedTag(){
             let tagID = this.selectedTags[0];
