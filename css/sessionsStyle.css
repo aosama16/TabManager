@@ -48,6 +48,19 @@ i.delete:hover {
   opacity: 0;
 }
 
+.slide-fade-x-enter-active {
+  transition: all 0.3s ease;
+}
+
+.slide-fade-x-leave-active {
+  transition: all 0.3s ease;
+}
+
+.slide-fade-x-enter, .slide-fade-x-leave-to {
+  transform: translateX(-10px);
+  opacity: 0;
+}
+
 .sidenav {
   transform: translateX(0%) !important;
   padding: 50px 20px;
@@ -163,6 +176,98 @@ i.delete:hover {
   position: fixed;
   right: 50px;
   bottom: 50px;
+}
+
+.group {
+  padding-left: 20px;
+}
+.group h5 {
+  font-size: 1.64rem;
+  line-height: 110%;
+  cursor: pointer;
+}
+.group input.editor {
+  font-size: 1.64rem;
+  line-height: 110%;
+  border: 0;
+  outline: none;
+}
+.group.selected-group {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+}
+.group .group-handle {
+  cursor: move;
+}
+.group .header {
+  margin: 10px 0;
+}
+.group .header * {
+  margin: 5px 10px;
+}
+.group a {
+  z-index: 0;
+}
+.group .description {
+  padding-left: 10px;
+}
+.group .description .descriptionText {
+  cursor: pointer;
+  color: gray;
+}
+.group .description .editor {
+  font-size: 1.15rem;
+  color: gray;
+}
+.group .dropdown {
+  position: relative;
+  display: inline-block;
+  width: 15px;
+}
+.group .dropdown .show-more {
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #546e7a;
+}
+.group .dropdown .show-more:hover {
+  background-color: #90a4ae;
+}
+.group .dropdown .show {
+  display: block !important;
+}
+.group .dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  top: 30px;
+  overflow: auto;
+  border: 1px solid #ddd;
+  z-index: 1;
+  opacity: 1;
+  border-radius: 5px;
+  transition: 3ms;
+}
+.group .dropdown .dropdown-content .tag {
+  color: black;
+  margin: 0;
+  cursor: pointer;
+  padding: 5px;
+}
+.group .dropdown .dropdown-content .tag i {
+  margin: 0px;
+  margin-left: 10px;
+}
+.group .dropdown .dropdown-content .tag span {
+  font-size: 0.8rem;
+}
+.group .dropdown .dropdown-content .tag:hover {
+  background-color: #ddd;
+}
+.group .dropdown .dropdown-content input {
+  width: 100px;
+  font-size: 0.8rem;
+  margin: 5px 15px;
+  height: 20px;
 }
 
 /*# sourceMappingURL=sessionsStyle.css.map */

@@ -45,4 +45,16 @@ i.delete:hover{
 /* .slide-fade-leave-active below version 2.1.8 */ {
     transform: translateY(-10px);
     opacity: 0;
+
+}
+.slide-fade-x-enter-active {
+    transition: all .3s ease;
+}
+.slide-fade-x-leave-active {
+    transition: all .3s ease;
+}
+.slide-fade-x-enter, .slide-fade-x-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+    transform: translateX(-10px);
+    opacity: 0;
 }

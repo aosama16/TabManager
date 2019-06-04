@@ -4,6 +4,10 @@ let app = new Vue({
     mounted(){
         this.getState();
         window.addEventListener("focus", this.getState);
+        setTimeout(()=> {
+            let elems = document.querySelectorAll('select');
+            M.FormSelect.init(elems);
+        });
     },
     methods:{
         getState(){
@@ -38,8 +42,14 @@ let app = new Vue({
         },
         deleteGroup(groupID){
             if(confirm("Do you really want to delete this group?")){
-                let groupIDX = this.state.groups.findIndex(group => group.id == groupID);
-                this.state.groups.splice(groupIDX, 1);
+                if(this.filter == 'archive'){
+                    let groupIDX = this.state.archive.findIndex(group => group.id == groupID);
+                    this.state.archive.splice(groupIDX, 1);
+
+                }else{
+                    let groupIDX = this.state.groups.findIndex(group => group.id == groupID);
+                    this.state.groups.splice(groupIDX, 1);
+                }
             }
         },
         openAlltabs(groupID){
@@ -137,17 +147,23 @@ let app = new Vue({
                     el.scrollIntoView(true);
             }, 10);
         },
-        addToMerge(groupID){
+        addToMerge(event, groupID){
             if(this.merge.includes(groupID)){
+                event.target.textContent = 'SELECT';
                 let groupIDX = this.merge.findIndex(id => id == groupID);
                 this.merge.splice(groupIDX, 1);
             }
             else{
+                event.target.textContent = 'UNSELECT';
                 this.merge.push(groupID);
             }
         },
         cancelMergeSelection(){
             this.merge = [];
+            let selectbtns = document.getElementsByClassName("selectbtn");
+            for(btn of selectbtns){
+                btn.textContent = 'SELECT';
+            }
         },
         mergeGroups(){
             let groups = [];
@@ -188,15 +204,14 @@ let app = new Vue({
             event.target.value = '';
         },
         showTagMenu(event){
-            let openedMenu = event.target.nextElementSibling.classList.contains('show');
+            let openedMenu = event.currentTarget.nextElementSibling.classList.contains('show');
 
             let allElements = Array.from(document.querySelectorAll('.show'))
             for (let element of allElements) {
                 element.classList.remove('show')
             }
             if(openedMenu == false){
-                event.target.nextElementSibling.classList.add('show');
-                event.target.nextElementSibling.focus();
+                event.currentTarget.nextElementSibling.classList.add('show');
             }
         },
         toggleTagInGroup(groupID, tagID){
@@ -299,7 +314,7 @@ let app = new Vue({
     directives: {
         focus: { inserted: function (el) { el.focus(); }},
         resizable: {
-            inserted: function (el) { el.style.width = `${el.value.length * 10}px` }, 
-            update: function (el) { el.style.width = `${el.value.length * 10}px` }}
+            inserted: function (el) { el.style.width = `${el.value.length * 12}px` }, 
+            update: function (el) { el.style.width = `${el.value.length * 12}px` }}
     }
 });

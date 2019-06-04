@@ -1,45 +1,53 @@
-draggable(v-model='state.groups', handle='.title-handle')
-    div(class='group', :class="{'selected-group' : merge.includes(group.id)}" 
+draggable(v-model='state.groups', handle='.group-handle')
+    .group(:class="{'selected-group' : merge.includes(group.id)}" 
         v-for="group in filteredGroups" 
         :data-id='group.id')
         
         //- Group header
-        img.title-handle(src='images/handle.png')
-        input.editor(v-model='group.title', 
-                    :placeholder='group.title', 
-                    v-if='updateGroupID == group.id', 
-                    @keyup.enter="updateGroupID = ''", 
-                    @blur="updateGroupID = ''", 
-                    v-focus, v-resizable, type='text')
-        h2.title.unselectable(@dblclick='updateGroupID = group.id', v-else='') {{group.title}}
+        .valign-wrapper.header
+            i.material-icons.group-handle drag_handle
+            input.browser-default.editor(v-model='group.title', 
+                                  :placeholder='group.title', 
+                                  v-if='updateGroupID == group.id', 
+                                  @keyup.enter="updateGroupID = ''", 
+                                  @blur="updateGroupID = ''", 
+                                  v-focus, v-resizable, type='text')
+            h5.unselectable(@dblclick='updateGroupID = group.id', v-else='') {{group.title}}
+            //- Select Button
+            a.selectbtn.waves-effect.waves-light.btn-small.orange.lighten-2(@click='addToMerge($event, group.id)') Select
+            
+            //- Choose Tags Dropdown
+            .dropdown
+                .show-more(@click='showTagMenu')
+                    i.unselectable.tiny.white-text.material-icons details
+                .dropdown-content
+                    .unselectable.tag(@click='toggleTagInGroup(group.id, tag.id)', v-for='tag in state.tags')
+                        //- img.tick(v-if='group.tags.includes(tag.id)', src='./images/tick.png', alt='')
+                        transition(name='slide-fade-x')
+                            i.tiny.material-icons(v-if='group.tags.includes(tag.id)') check
+                        span {{tag.title}}
+                    input(placeholder='NEW TAG...', @keyup.enter='addTag', type='text')
         
-        //- Group Header Actions
-        h3.title.unselectable {{ group.tabs.length }} tabs
-        span.header-action.clickable.unselectable(@click='deleteGroup(group.id)') Delete Group
-        span.header-action.clickable.unselectable(@click='openAlltabs(group.id)') Open all tabs
-        span.header-action.clickable.unselectable(@click='archiveGroup(group.id)', v-if='filter != "archive"') Archive Group
-        span.date Created on {{group.date}}
+            
+        .valign-wrapper.header
+            //- Group Header Actions
+            h6.unselectable {{ group.tabs.length }} tabs
+            span.header-action.clickable.unselectable(@click='deleteGroup(group.id)') Delete Group
+            span.header-action.clickable.unselectable(@click='openAlltabs(group.id)') Open all tabs
+            span.header-action.clickable.unselectable(@click='archiveGroup(group.id)', v-if='filter != "archive"') Archive Group
+            span.date Created on {{group.date}}
         
-        //- Select Button
-        button(@click='addToMerge(group.id)') Select
         
-        //- Choose Tags Dropdown
-        .dropdown
-            .show-more(@click='showTagMenu')
-            .dropdown-content
-                a.unselectable(@click='toggleTagInGroup(group.id, tag.id)', v-for='tag in state.tags')
-                    img.tick(v-if='group.tags.includes(tag.id)', src='./images/tick.png', alt='')
-                    span {{tag.title}}
-                input(placeholder='NEW TAG...', @keyup.enter='addTag', type='text')
         
         //- Group Description
-        input.editor.description(v-model='group.description', 
-                                :placeholder='group.description', 
-                                v-if='updateGroupDescription == group.id', 
-                                @keyup.enter="updateGroupDescription = ''", 
-                                @blur="updateGroupDescription = ''", 
-                                v-focus, v-resizable, type='text')
-        h4.unselectable.descriptionText(@dblclick='updateGroupDescription = group.id', v-else) {{group.description}}
+        .description
+            input.browser-default.editor(v-model='group.description', 
+                                    :placeholder='group.description', 
+                                    v-if='updateGroupDescription == group.id', 
+                                    @keyup.enter="updateGroupDescription = ''", 
+                                    @blur="updateGroupDescription = ''", 
+                                    v-focus, v-resizable, type='text')
+            h6.unselectable.descriptionText(@dblclick='updateGroupDescription = group.id', v-else) {{group.description}}
         
         //- Tabs
         include tab
