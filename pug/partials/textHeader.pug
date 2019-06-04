@@ -3,6 +3,7 @@
   h6(v-if='selectedTags.length != 0') Filtered by tag: {{selectedTag}}
   h6(v-if='search.length != 0') Search results for {{search}}
   h6(v-if='state.groups.length == 0') There are no saved sessions!
+  h6(v-if='state.archive.length == 0 && filter=="archive"') Archive is empty!
   a.btn-floating.btn-large.waves-effect.waves-light.green(@click='createNewGroup')
     i.material-icons add
   .divider

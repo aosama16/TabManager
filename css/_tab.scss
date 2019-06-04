@@ -1,0 +1,18 @@
+#tabs{
+  .tab {
+    * {
+      margin-left: 5px;
+    }
+
+    &:hover i.hidden{
+      opacity: 1 !important;
+    }
+  }
+
+  i.hidden{
+    opacity: 0;
+    cursor: pointer;
+    transition: opacity 300ms;
+  }
+
+}

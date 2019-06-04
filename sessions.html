@@ -58,7 +58,8 @@
         <h4>Saved Sessions - There are {{tabsNumber}} saved tabs.</h4>
         <h6 v-if="selectedTags.length != 0">Filtered by tag: {{selectedTag}}</h6>
         <h6 v-if="search.length != 0">Search results for {{search}}</h6>
-        <h6 v-if="state.groups.length == 0">There are no saved sessions!</h6><a class="btn-floating btn-large waves-effect waves-light green" @click="createNewGroup"><i class="material-icons">add</i></a>
+        <h6 v-if="state.groups.length == 0">There are no saved sessions!</h6>
+        <h6 v-if="state.archive.length == 0 &amp;&amp; filter==&quot;archive&quot;">Archive is empty!</h6><a class="btn-floating btn-large waves-effect waves-light green" @click="createNewGroup"><i class="material-icons">add</i></a>
         <div class="divider"></div>
       </div>
       <draggable v-model="state.groups" handle=".group-handle">
@@ -83,11 +84,13 @@
             <input class="browser-default editor" v-model="group.description" :placeholder="group.description" v-if="updateGroupDescription == group.id" @keyup.enter="updateGroupDescription = ''" @blur="updateGroupDescription = ''" v-focus v-resizable type="text">
             <h6 class="unselectable descriptionText" @dblclick="updateGroupDescription = group.id" v-else>{{group.description}}</h6>
           </div>
-          <draggable v-model="group.tabs" group="session" handle=".handle" @start="saveID" @end="endDrag">
-            <div class="tab unselectable" v-for="tab in filteredTabs(group.tabs)" :data-id="tab.id"><img class="clickable hidden" @click="deleteTab(group.id, tab.id)" src="./images/delete.png"><img class="clickable" @click="starTab(group.id, tab.id)" :class="tab.starred ? 'visible' : 'hidden'" :src="tab.starred ? './images/starred.png' : './images/star-empty.png'"><img class="handle" src="images/handle.png"><img class="favicon" :src="getFavicon(tab)">
-              <input type="checkbox" v-model="tab.checked"><a :href="tab.url" target="_blank">{{tab.title}}</a>
-            </div>
-          </draggable>
+          <div id="tabs">
+            <draggable v-model="group.tabs" group="session" handle=".tab-handle" @start="saveID" @end="endDrag">
+              <div class="valign-wrapper tab unselectable" v-for="tab in filteredTabs(group.tabs)" :data-id="tab.id"><i class="material-icons hidden red-text" @click="deleteTab(group.id, tab.id)">highlight_off</i><i class="material-icons yellow-text text-darken-2" @click="starTab(group.id, tab.id)" v-if="tab.starred">star</i><i class="material-icons hidden yellow-text text-darken-2" @click="starTab(group.id, tab.id)" v-else>star_border</i><i class="material-icons tab-handle">drag_handle</i><img class="favicon" :src="getFavicon(tab)">
+                <input type="checkbox" v-model="tab.checked"><a :href="tab.url" target="_blank">{{tab.title}}</a>
+              </div>
+            </draggable>
+          </div>
         </div>
       </draggable>
     </div>
