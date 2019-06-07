@@ -2,20 +2,34 @@
   <html>
     <head>
       <link rel="stylesheet" type="text/css" href="css/popupStyle.css">
+      <link rel="stylesheet" href="css/material-icon.css">
+      <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
+      <script src="js/materialize.min.js"></script>
     </head>
     <body>
       <div v-cloak id="app">
-        <div>
-          <button v-on:click="addCurrentSession">Save Session</button>
-          <button v-on:click="saveCloseSession">Save Session & close tabs</button>
-          <button v-on:click="openManagerPage">Open Sessions</button>
+        <div class="row center">
+          <div class="col s6 center btn-wrapper" v-on:click="addCurrentSession">
+            <div class="btn blue-grey">Save tabs</div>
+          </div>
+          <div class="col s6 center btn-wrapper" v-on:click="saveCloseSession">
+            <div class="btn blue-grey">Save & close tabs</div>
+            </div>
+          <div class="col s12 center btn-wrapper" v-on:click="openManagerPage">
+            <div class="btn blue-grey">Open Sessions</div>
+          </div>
         </div>
-        <img style='width: 25px' src="./images/starred.png" alt="">
-        <h2>Starred Tabs</h2>
-        <h3 v-if='starredTabs.length == 0'>There are no starred tabs</h3>
-        <div v-for="tab in starredTabs">
-          <img class='favicon' v-bind:src="getFavicon(tab)">
-          <a v-bind:href="tab.url" target='_blank'>{{tab.title}}</a>
+        <div class="divider"></div>
+        <div class="valign-wrapper">
+          <i class="material-icons small yellow-text text-darken-2">star</i>
+          <h5 id="starred-title">Starred Tabs</h5>
+        </div>
+        <h6 v-if='starredTabs.length == 0'>There are no starred tabs</h6>
+        <div class="starred-tabs">
+          <div v-for="tab in starredTabs">
+            <img class='favicon' v-bind:src="getFavicon(tab)">
+            <a v-bind:href="tab.url" target='_blank'>{{tab.title}}</a>
+          </div>
         </div>
       </div>
 

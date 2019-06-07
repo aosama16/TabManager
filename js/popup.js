@@ -38,6 +38,8 @@ let app = new Vue({
           
         state.groups.unshift(group);
         Utils.setState(state);
+
+        M.toast({html: 'Session saved!', classes: 'rounded'})
       },
 
       openManagerPage(){
