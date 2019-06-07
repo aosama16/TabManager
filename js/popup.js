@@ -34,9 +34,9 @@ let app = new Vue({
 
         let group = Utils.createGroup(Utils.getCurrentDate());
         for (tab of this.openedTabs) 
-          group.tabs.push(Utils.createTab(tab.title, tab.url, Utils.getCurrentDate()));
-        state.groups.push(group);
-      
+          group.tabs.push(Utils.createTab((tab.title || 'Untitled'), tab.url, Utils.getCurrentDate()));
+          
+        state.groups.unshift(group);
         Utils.setState(state);
       },
 
