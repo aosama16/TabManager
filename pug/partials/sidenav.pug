@@ -5,7 +5,7 @@
 #groups.section
     .clearfix
         h5.white-text.unselectable.title.left(@click='clearSelectedTags') GROUPS
-        a.waves-effect.waves-light.btn-small.red.right(@click='deleteEmptyGroups') 
+        a.waves-effect.waves-light.btn-small.red.lighten-1.right(@click='deleteEmptyGroups') 
             span Delete empty
             //- i.material-icons.left delete 
     .clickable(v-for='group in state.groups', @click='scrollto(group.id)')

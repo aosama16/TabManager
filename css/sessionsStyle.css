@@ -175,21 +175,21 @@ i.delete:hover {
 #toolbar i:hover {
   color: white;
 }
-#toolbar li {
+#toolbar .right li {
   margin-left: 25px;
 }
-#toolbar li .text {
+#toolbar .right li .text {
   font-size: 1.2rem;
 }
-#toolbar li ::placeholder {
+#toolbar .right li ::placeholder {
   color: white;
   opacity: 0.6;
 }
-#toolbar li input {
+#toolbar .right li input {
   border-bottom: 1px solid white !important;
   height: 30px;
 }
-#toolbar li input:focus {
+#toolbar .right li input:focus {
   border-bottom: 1px solid white !important;
   box-shadow: 0 1px 0 0 white !important;
 }

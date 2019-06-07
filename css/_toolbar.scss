@@ -20,26 +20,28 @@
         }
     }
 
-    li{
-        margin-left: 25px;
-        
-        .text{
-            font-size: 1.2rem;
-        }
-        
-        ::placeholder { 
-            color: white;
-            opacity: 0.6;
-        }
+    .right{
+        li{
+            margin-left: 25px;
+            
+            .text{
+                font-size: 1.2rem;
+            }
+            
+            ::placeholder { 
+                color: white;
+                opacity: 0.6;
+            }
 
-        input{
-            border-bottom: 1px solid white !important;
-            height: 30px;
-        }
+            input{
+                border-bottom: 1px solid white !important;
+                height: 30px;
+            }
 
-        input:focus {
-            border-bottom: 1px solid white !important;
-            box-shadow: 0 1px 0 0 white !important
+            input:focus {
+                border-bottom: 1px solid white !important;
+                box-shadow: 0 1px 0 0 white !important
+            }
         }
     }
 }

@@ -39,8 +39,8 @@ let app = new Vue({
                 targetGroup.tabs.splice(tabIDX, 1);
             }
         },
-        deleteGroup(groupID){
-            if(confirm("Do you really want to delete this group?")){
+        deleteGroup(groupID, silent=false){
+            if(silent || confirm("Do you really want to delete this group?")){
                 let groupIDX = this.state.groups.findIndex(group => group.id == groupID);
                 this.state.groups.splice(groupIDX, 1);
             }
@@ -185,6 +185,19 @@ let app = new Vue({
             });
             this.merge = [];
             this.mergeTitle = '';
+            let selectbtns = document.getElementsByClassName("selectbtn");
+            for(btn of selectbtns){
+                btn.textContent = 'SELECT';
+            }
+        },
+        deleteSelectedGroups(){
+            for(groupID of this.merge){
+                this.deleteGroup(groupID, true)
+            }
+
+            this.merge = [];
+            this.mergeTitle = '';
+
             let selectbtns = document.getElementsByClassName("selectbtn");
             for(btn of selectbtns){
                 btn.textContent = 'SELECT';

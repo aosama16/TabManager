@@ -18,7 +18,7 @@
       </div>
       <div class="section" id="groups">
         <div class="clearfix">
-          <h5 class="white-text unselectable title left" @click="clearSelectedTags">GROUPS</h5><a class="waves-effect waves-light btn-small red right" @click="deleteEmptyGroups"> <span>Delete empty</span></a>
+          <h5 class="white-text unselectable title left" @click="clearSelectedTags">GROUPS</h5><a class="waves-effect waves-light btn-small red lighten-1 right" @click="deleteEmptyGroups"> <span>Delete empty</span></a>
         </div>
         <div class="clickable" v-for="group in state.groups" @click="scrollto(group.id)">
           <h6 class="item" :data-id="group.id" :class="{'drop-container':inDrag}" @dragover.prevent="" @drop="moveTab" @dragenter="highlight" @dragleave="removeHighlight">{{group.title || 'Untitled'}}</h6>
@@ -41,6 +41,9 @@
       <transition name="slide-fade">
         <nav id="toolbar" v-if="merge.length != 0">
           <div class="nav-wrapper orange lighten-2"><i class="material-icons left" @click="cancelMergeSelection">close</i>
+            <ul class="left">
+              <li><a class="waves-effect waves-light btn red lighten-1 white-text" @click="deleteSelectedGroups">Delete</a></li>
+            </ul>
             <ul class="right">
               <li><span class="white-text text">{{merge.length}} groups selected</span></li>
               <li>

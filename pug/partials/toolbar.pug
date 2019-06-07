@@ -2,6 +2,9 @@ transition(name='slide-fade')
   nav#toolbar(v-if='merge.length != 0')
     .nav-wrapper.orange.lighten-2
       i.material-icons.left(@click='cancelMergeSelection') close
+      ul.left
+        li
+          a.waves-effect.waves-light.btn.red.lighten-1.white-text(@click='deleteSelectedGroups') Delete
       ul.right
         li
           span.white-text.text {{merge.length}} groups selected
