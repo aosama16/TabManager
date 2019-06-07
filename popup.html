@@ -25,7 +25,7 @@
           <h5 id="starred-title">Starred Tabs</h5>
         </div>
         <h6 v-if='starredTabs.length == 0'>There are no starred tabs</h6>
-        <div class="starred-tabs">
+        <div class="starred-tabs" v-else>
           <div v-for="tab in starredTabs">
             <img class='favicon' v-bind:src="getFavicon(tab)">
             <a v-bind:href="tab.url" target='_blank'>{{tab.title}}</a>
