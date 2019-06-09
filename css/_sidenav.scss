@@ -5,7 +5,7 @@
     transform: translateX(0%) !important;
     padding: 50px 20px;
     width: 250px !important;
-    z-index: 0 !important;
+    z-index: 999 !important;
 
     #search-wrapper i{
         position: absolute;
