@@ -348,6 +348,9 @@ i.delete:hover {
   opacity: 0.2;
   cursor: move;
 }
+#tabs .tab .checkbox {
+  opacity: 0.7;
+}
 #tabs .tab:hover i.hidden {
   opacity: 1 !important;
 }

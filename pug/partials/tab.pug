@@ -6,5 +6,7 @@
             i.material-icons.hidden.yellow-text.text-darken-2(@click='starTab(group.id, tab.id)', v-else) star_border
             img.tab-handle(src="img/drag_tab.png", alt="")
             img.favicon(:src='getFavicon(tab)')
-            input(type='checkbox', v-model='tab.checked')
+            label.checkbox.default-browser
+                input(type='checkbox', v-model='tab.checked')
+                span
             a(:href='tab.url', target='_blank') {{tab.title}}

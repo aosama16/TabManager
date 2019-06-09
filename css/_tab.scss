@@ -11,6 +11,9 @@
         opacity: 0.2;
         cursor: move;
     }
+    .checkbox {
+      opacity: 0.7;
+    }
 
     &:hover i.hidden{
       opacity: 1 !important;

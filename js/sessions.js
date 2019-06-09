@@ -174,7 +174,7 @@ let app = new Vue({
                 mergedTabs = mergedTabs.concat(group.tabs);
                 mergedTags = mergedTags.concat(group.tags);
             }
-            this.state.groups.push({
+            this.state.groups.unshift({
                 id: Utils.genID(),
                 title: this.mergeTitle || groups[0].title,
                 date: Utils.getCurrentDate(),
