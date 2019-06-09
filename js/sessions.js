@@ -258,6 +258,9 @@ let app = new Vue({
 
             this.filter = '';
         },
+        clearSearchText(){
+            this.search = '';
+        },
         addToSelectedTags(tagID){
             this.clearSelectedTags();
             this.selectedTags.push(tagID);

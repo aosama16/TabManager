@@ -1,0 +1,16 @@
+#topbar.blue-grey.darken-4.grey-text.text-lighten-2
+  .right-container.right
+    .switch
+      label
+        i.material-icons.tiny.grey-text.text-lighten-2 brightness_low
+        input(type="checkbox")
+        span.lever
+        i.material-icons.tiny.grey-text.text-lighten-2 brightness_4
+    i.material-icons.settings settings
+  .left-container
+    span.tag(v-if='selectedTags.length != 0')
+      span.unselectable {{selectedTag}}
+      i.material-icons.tiny.white-text(@click='clearSelectedTags') close
+    span.search(v-if='search.length != 0') 
+      span Search results for "{{search}}"
+      i.material-icons.tiny.white-text(@click='clearSearchText') close

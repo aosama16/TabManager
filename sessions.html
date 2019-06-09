@@ -39,6 +39,16 @@
         <input class="white-text" placeholder="NEW TAG..." @keyup.enter="addTag" type="text">
       </div>
     </div>
+    <div class="blue-grey darken-4 grey-text text-lighten-2" id="topbar">
+      <div class="right-container right">
+        <div class="switch">
+          <label><i class="material-icons tiny grey-text text-lighten-2">brightness_low</i>
+            <input type="checkbox"><span class="lever"></span><i class="material-icons tiny grey-text text-lighten-2">brightness_4</i>
+          </label>
+        </div><i class="material-icons settings">settings</i>
+      </div>
+      <div class="left-container"><span class="tag" v-if="selectedTags.length != 0"><span class="unselectable">{{selectedTag}}</span><i class="material-icons tiny white-text" @click="clearSelectedTags">close</i></span><span class="search" v-if="search.length != 0"> <span>Search results for "{{search}}"</span><i class="material-icons tiny white-text" @click="clearSearchText">close</i></span></div>
+    </div>
     <div class="main">
       <transition name="slide-fade">
         <nav id="toolbar" v-if="merge.length != 0">
@@ -58,8 +68,6 @@
       </transition>
       <div id="head-text">
         <h4>Saved Sessions - There are {{tabsNumber}} saved tabs.</h4>
-        <h6 v-if="selectedTags.length != 0">Filtered by tag: {{selectedTag}}</h6>
-        <h6 v-if="search.length != 0">Search results for {{search}}</h6>
         <h6 v-if="state.groups.length == 0">There are no saved sessions!</h6><a class="btn-floating btn-large waves-effect waves-light green" @click="createNewGroup"><i class="material-icons">add</i></a>
         <div class="divider"></div>
       </div>
