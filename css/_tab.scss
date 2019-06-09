@@ -1,7 +1,15 @@
 #tabs{
   .tab {
+    margin: 5px 0px;
+
     * {
       margin-left: 5px;
+    }
+
+    .tab-handle {
+        width: 15px;
+        opacity: 0.2;
+        cursor: move;
     }
 
     &:hover i.hidden{
@@ -10,7 +18,7 @@
   }
 
   i.hidden{
-    opacity: 0;
+    opacity: 0.2;
     cursor: pointer;
     transition: opacity 300ms;
   }

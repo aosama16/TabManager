@@ -255,14 +255,17 @@ i.delete:hover {
   background-color: #f5f5f5;
   border-radius: 10px;
 }
-.group .group-handle {
-  cursor: move;
-}
 .group .header {
   margin: 10px 0;
 }
 .group .header * {
   margin: 5px 10px;
+}
+.group .header .group-handle {
+  width: 15px;
+  opacity: 0.2;
+  margin: 0;
+  cursor: move;
 }
 .group a {
   z-index: 0;
@@ -334,14 +337,22 @@ i.delete:hover {
   height: 20px;
 }
 
+#tabs .tab {
+  margin: 5px 0px;
+}
 #tabs .tab * {
   margin-left: 5px;
+}
+#tabs .tab .tab-handle {
+  width: 15px;
+  opacity: 0.2;
+  cursor: move;
 }
 #tabs .tab:hover i.hidden {
   opacity: 1 !important;
 }
 #tabs i.hidden {
-  opacity: 0;
+  opacity: 0.2;
   cursor: pointer;
   transition: opacity 300ms;
 }

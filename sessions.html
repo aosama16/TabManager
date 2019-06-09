@@ -65,7 +65,7 @@
       </div>
       <draggable v-model="state.groups" handle=".group-handle">
         <div class="group" :class="{'selected-group' : merge.includes(group.id)}" v-for="group in filteredGroups" :data-id="group.id">
-          <div class="valign-wrapper header"><i class="material-icons group-handle">drag_handle</i>
+          <div class="valign-wrapper header"><img class="group-handle" src="img/drag_group.png" alt="">
             <input class="browser-default editor" v-model="group.title" :placeholder="group.title" v-if="updateGroupID == group.id" @keyup.enter="updateGroupID = ''" @blur="updateGroupID = ''" v-focus v-resizable type="text">
             <h5 class="unselectable" @dblclick="updateGroupID = group.id" v-else="">{{group.title}}</h5><i class="tiny material-icons edit" @click="updateGroupID = group.id">edit</i><a class="selectbtn waves-effect waves-light btn-small orange lighten-2" @click="addToMerge($event, group.id)">Select</a>
             <div class="dropdown">
@@ -87,7 +87,7 @@
           </div>
           <div id="tabs">
             <draggable v-model="group.tabs" group="session" handle=".tab-handle" @start="saveID" @end="endDrag">
-              <div class="valign-wrapper tab unselectable" v-for="tab in filteredTabs(group.tabs)" :data-id="tab.id"><i class="material-icons hidden red-text" @click="deleteTab(group.id, tab.id)">highlight_off</i><i class="material-icons yellow-text text-darken-2" @click="starTab(group.id, tab.id)" v-if="tab.starred">star</i><i class="material-icons hidden yellow-text text-darken-2" @click="starTab(group.id, tab.id)" v-else>star_border</i><i class="material-icons tab-handle">drag_handle</i><img class="favicon" :src="getFavicon(tab)">
+              <div class="valign-wrapper tab unselectable" v-for="tab in filteredTabs(group.tabs)" :data-id="tab.id"><i class="material-icons hidden red-text" @click="deleteTab(group.id, tab.id)">highlight_off</i><i class="material-icons yellow-text text-darken-2" @click="starTab(group.id, tab.id)" v-if="tab.starred">star</i><i class="material-icons hidden yellow-text text-darken-2" @click="starTab(group.id, tab.id)" v-else>star_border</i><img class="tab-handle" src="img/drag_tab.png" alt=""><img class="favicon" :src="getFavicon(tab)">
                 <input type="checkbox" v-model="tab.checked"><a :href="tab.url" target="_blank">{{tab.title}}</a>
               </div>
             </draggable>

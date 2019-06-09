@@ -30,17 +30,20 @@
     border-radius: 10px;
   }
   
-  .group-handle {
-    cursor: move;
-  }
-
+  
   .header {
     margin: 10px 0;
     
     * {
       margin: 5px 10px;
     }
-
+    
+    .group-handle {
+      width: 15px;
+      opacity: 0.2;
+      margin: 0;
+      cursor: move;
+    }
     
   }
 

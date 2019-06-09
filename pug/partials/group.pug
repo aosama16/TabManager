@@ -5,7 +5,7 @@ draggable(v-model='state.groups', handle='.group-handle')
         
         //- Group header
         .valign-wrapper.header
-            i.material-icons.group-handle drag_handle
+            img.group-handle(src="img/drag_group.png", alt="")
             input.browser-default.editor(v-model='group.title', 
                                   :placeholder='group.title', 
                                   v-if='updateGroupID == group.id', 
