@@ -7,14 +7,17 @@
         h5.white-text.unselectable.title.left(@click='clearSelectedTags') GROUPS
         a.waves-effect.waves-light.btn-small.red.lighten-1.right(@click='deleteEmptyGroups') 
             span Delete empty
-            //- i.material-icons.left delete 
-    .clickable(v-for='group in state.groups', @click='scrollto(group.id)')
-        h6.item(:data-id='group.id', 
-            :class="{'drop-container':inDrag}", 
-            @dragover.prevent='', 
-            @drop='moveTab', 
-            @dragenter='highlight', 
-            @dragleave='removeHighlight') {{group.title || 'Untitled'}}
+            //- i.material-icons.left delete
+    draggable(v-model='state.groups', handle='.handle') 
+        .clickable.valign-wrapper(  v-for='group in state.groups', 
+                                    @click='scrollto(group.id)')
+            img.handle(src="img/drag_sidenav.png", alt="")
+            h6.item(:data-id='group.id', 
+                :class="{'drop-container':inDrag}", 
+                @dragover.prevent='', 
+                @drop='moveTab', 
+                @dragenter='highlight', 
+                @dragleave='removeHighlight') {{group.title || 'Untitled'}}
     h6.item.clickable.center(:data-id='0', 
         :class="{'drop-container':inDrag}", 
         @dragover.prevent='', 

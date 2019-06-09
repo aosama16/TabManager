@@ -41,6 +41,7 @@ i.delete:hover {
 .sortable-ghost {
   border: 1px dashed #004141;
   margin: 5px;
+  border-radius: 5px;
 }
 
 /* slide-fade transition */
@@ -120,6 +121,17 @@ i.delete:hover {
 .sidenav .clickable *:hover {
   color: white;
 }
+.sidenav .sortable-ghost {
+  margin: 0;
+  visibility: hidden;
+}
+.sidenav .sortable-chosen {
+  opacity: 1;
+  border: #455a64 solid 1px;
+  border-radius: 5px;
+  padding-left: 3px;
+  background-color: rgba(89, 116, 129, 0.4);
+}
 .sidenav #groups .title {
   display: inline-block;
   cursor: pointer;
@@ -128,22 +140,27 @@ i.delete:hover {
 }
 .sidenav #groups .item {
   border-radius: 5px;
+  margin: 3px 0;
 }
-.sidenav #groups .item.drop-container {
+.sidenav #groups .drop-container {
   background-color: #455a64;
+}
+.sidenav #groups img.handle {
+  cursor: move;
 }
 .sidenav #tags .item {
   display: inline-block;
-  margin: 5px 0px;
+  margin: 3px 0px;
 }
 .sidenav #tags input {
   font-size: 0.8rem;
   height: 20px;
-  padding: 5px 5px;
+  margin-top: 5px;
+  padding: 3px 5px;
 }
 .sidenav #tags input.editor {
   padding: 5px 5px;
-  margin: 5px 0px;
+  margin: 4px 0px;
   border: 0;
   outline: none;
   color: white;
@@ -152,8 +169,8 @@ i.delete:hover {
   background-color: #263238;
 }
 .sidenav #tags i {
-  margin: 5px 0px;
-  padding: 5px 5px;
+  margin: 3px 0px;
+  padding: 3px 5px;
 }
 
 #toolbar {

@@ -32,7 +32,20 @@
     .clickable *:hover{
         color:white;
     }
+
+    .sortable-ghost {
+        margin: 0;
+        visibility: hidden;
+    }
     
+    .sortable-chosen {
+        opacity: 1;
+        border: #455a64 solid 1px;
+        border-radius: 5px;
+        padding-left: 3px;
+        background-color: rgba(89,116,129,0.4)
+    }
+
     #groups{
         .title{
             display: inline-block;
@@ -40,31 +53,37 @@
             line-height: 200%;
             margin: 0;
         }
-
+        
         .item{
             border-radius: 5px;
+            margin: 3px 0;
         }
 
-        .item.drop-container{
+        .drop-container{
             background-color: #455a64;
+        }
+
+        img.handle {
+            cursor: move;
         }
     }
 
     #tags{
         .item{
             display: inline-block;
-            margin: 5px 0px;
+            margin: 3px 0px;
         }
 
         input{
             font-size: $item-font-size;
             height: 20px;
-            padding: 5px 5px;
+            margin-top: 5px;
+            padding: 3px 5px;
         }
 
         input.editor{
             padding: 5px 5px;
-            margin: 5px 0px;
+            margin: 4px 0px;
             border: 0;
             outline: none;
             color: white;
@@ -74,8 +93,8 @@
         }
         
         i{
-            margin: 5px 0px;
-            padding: 5px 5px;
+            margin: 3px 0px;
+            padding: 3px 5px;
         }
     }
 }
