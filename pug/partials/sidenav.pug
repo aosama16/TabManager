@@ -9,8 +9,8 @@
             span Delete empty
             //- i.material-icons.left delete
     draggable(v-model='state.groups', handle='.handle') 
-        .clickable.valign-wrapper(  v-for='group in state.groups', 
-                                    @click='scrollto(group.id)')
+        .clickable( v-for='group in state.groups', 
+                    @click='scrollto(group.id)')
             img.handle(src="img/drag_sidenav.png", alt="")
             h6.item(:data-id='group.id', 
                 :class="{'drop-container':inDrag}", 

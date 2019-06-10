@@ -138,14 +138,20 @@ i.delete:hover {
   line-height: 200%;
   margin: 0;
 }
+.sidenav #groups .clickable {
+  display: flex;
+  align-content: center;
+}
 .sidenav #groups .item {
   border-radius: 5px;
   margin: 3px 0;
+  flex-grow: 1;
 }
 .sidenav #groups .drop-container {
   background-color: #455a64;
 }
 .sidenav #groups img.handle {
+  align-self: center;
   cursor: move;
 }
 .sidenav #tags .item {
