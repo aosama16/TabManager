@@ -407,6 +407,10 @@ i.delete:hover {
 #tabs .tab:hover i.hidden {
   opacity: 1 !important;
 }
+#tabs .tab a.checked {
+  color: #b3d5e6;
+  text-decoration: line-through;
+}
 #tabs i.hidden {
   opacity: 0.2;
   cursor: pointer;

@@ -297,6 +297,9 @@ let app = new Vue({
         // },
         filteredTabs(tabs){
             return tabs.filter(tab => tab.title.toLowerCase().includes(this.search.toLowerCase()));
+        },
+        checkTab(tab){
+            tab.checked = true;
         }
     },
     computed: {

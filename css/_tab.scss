@@ -18,6 +18,11 @@
     &:hover i.hidden{
       opacity: 1 !important;
     }
+
+    a.checked {
+      color: #b3d5e6;
+      text-decoration: line-through;
+    }
   }
 
   i.hidden{

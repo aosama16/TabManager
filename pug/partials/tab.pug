@@ -9,4 +9,4 @@
             label.checkbox.default-browser
                 input(type='checkbox', v-model='tab.checked')
                 span
-            a(:href='tab.url', target='_blank') {{tab.title}}
+            a(@click='checkTab(tab)', :class='{"checked": tab.checked}', :href='tab.url', target='_blank') {{tab.title}}

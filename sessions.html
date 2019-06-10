@@ -98,7 +98,7 @@
               <div class="valign-wrapper tab unselectable" v-for="tab in filteredTabs(group.tabs)" :data-id="tab.id"><i class="material-icons hidden red-text" @click="deleteTab(group.id, tab.id)">highlight_off</i><i class="material-icons yellow-text text-darken-2" @click="starTab(group.id, tab.id)" v-if="tab.starred">star</i><i class="material-icons hidden yellow-text text-darken-2" @click="starTab(group.id, tab.id)" v-else>star_border</i><img class="tab-handle" src="img/drag_tab.png" alt=""><img class="favicon" :src="getFavicon(tab)">
                 <label class="checkbox default-browser">
                   <input type="checkbox" v-model="tab.checked"><span></span>
-                </label><a :href="tab.url" target="_blank">{{tab.title}}</a>
+                </label><a @click="checkTab(tab)" :class="{&quot;checked&quot;: tab.checked}" :href="tab.url" target="_blank">{{tab.title}}</a>
               </div>
             </draggable>
           </div>
