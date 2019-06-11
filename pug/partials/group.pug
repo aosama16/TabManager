@@ -11,7 +11,7 @@ draggable(v-model='state.groups', handle='.group-handle')
                                   v-if='updateGroupID == group.id', 
                                   @keyup.enter="updateGroupID = ''", 
                                   @blur="updateGroupID = ''", 
-                                  v-focus, v-resizable, type='text')
+                                  v-focus, v-resizable, type='text', maxlength='30')
             h5.unselectable(@dblclick='updateGroupID = group.id', v-else='') {{group.title}}
             i.tiny.material-icons.edit(@click='updateGroupID = group.id') edit
             //- Select Button
@@ -43,7 +43,7 @@ draggable(v-model='state.groups', handle='.group-handle')
                                     v-if='updateGroupDescription == group.id', 
                                     @keyup.enter="updateGroupDescription = ''", 
                                     @blur="updateGroupDescription = ''", 
-                                    v-focus, v-resizable, type='text')
+                                    v-focus, v-resizablesmall, type='text', maxlength='100')
             h6.unselectable.descriptionText(@dblclick='updateGroupDescription = group.id', v-else) {{group.description}}
             i.tiny.material-icons.edit(@click='updateGroupDescription = group.id') edit
         

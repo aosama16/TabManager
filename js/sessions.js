@@ -349,6 +349,11 @@ let app = new Vue({
         focus: { inserted: function (el) { el.focus(); }},
         resizable: {
             inserted: function (el) { el.style.width = `${(el.value.length * 12)+5}px` }, 
-            update: function (el) { el.style.width = `${(el.value.length * 12)+5}px` }}
+            update: function (el) { el.style.width = `${(el.value.length * 12)+5}px` }
+        },
+        resizablesmall: {
+            inserted: function (el) { el.style.width = `${(el.value.length * 8)+4}px` }, 
+            update: function (el) { el.style.width = `${(el.value.length * 8)+4}px` }
+        }
     }
 });

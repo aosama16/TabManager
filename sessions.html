@@ -74,7 +74,7 @@
       <draggable v-model="state.groups" handle=".group-handle">
         <div class="group" :class="{'selected-group' : merge.includes(group.id)}" v-for="group in filteredGroups" :data-id="group.id">
           <div class="valign-wrapper header"><img class="group-handle" src="img/drag_group.png" alt="">
-            <input class="browser-default editor" v-model="group.title" :placeholder="group.title" v-if="updateGroupID == group.id" @keyup.enter="updateGroupID = ''" @blur="updateGroupID = ''" v-focus v-resizable type="text">
+            <input class="browser-default editor" v-model="group.title" :placeholder="group.title" v-if="updateGroupID == group.id" @keyup.enter="updateGroupID = ''" @blur="updateGroupID = ''" v-focus v-resizable type="text" maxlength="30">
             <h5 class="unselectable" @dblclick="updateGroupID = group.id" v-else="">{{group.title}}</h5><i class="tiny material-icons edit" @click="updateGroupID = group.id">edit</i><a class="selectbtn waves-effect waves-light btn-small orange lighten-2" @click="addToMerge($event, group.id)">Select</a>
             <div class="dropdown">
               <div class="show-more" @click="showTagMenu"><i class="unselectable tiny white-text material-icons">details</i></div>
@@ -90,7 +90,7 @@
             <h6 class="unselectable">{{ group.tabs.length }} tabs</h6><span class="header-action clickable unselectable" @click="deleteGroup(group.id)">Delete Group</span><span class="header-action clickable unselectable" @click="openAlltabs(group.id)">Open all tabs</span><span class="date">Created on {{group.date}}</span>
           </div>
           <div class="description">
-            <input class="browser-default editor" v-model="group.description" :placeholder="group.description" v-if="updateGroupDescription == group.id" @keyup.enter="updateGroupDescription = ''" @blur="updateGroupDescription = ''" v-focus v-resizable type="text">
+            <input class="browser-default editor" v-model="group.description" :placeholder="group.description" v-if="updateGroupDescription == group.id" @keyup.enter="updateGroupDescription = ''" @blur="updateGroupDescription = ''" v-focus v-resizablesmall type="text" maxlength="100">
             <h6 class="unselectable descriptionText" @dblclick="updateGroupDescription = group.id" v-else>{{group.description}}</h6><i class="tiny material-icons edit" @click="updateGroupDescription = group.id">edit</i>
           </div>
           <div id="tabs">
