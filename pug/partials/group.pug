@@ -1,5 +1,5 @@
 draggable(v-model='state.groups', handle='.group-handle')
-    .group(:class="{'selected-group' : merge.includes(group.id)}" 
+    .group(:class="{'selected-group' : merge.includes(group.id), 'dark' : state.darktheme}" 
         v-for="group in filteredGroups" 
         :data-id='group.id')
         

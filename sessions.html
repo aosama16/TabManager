@@ -11,8 +11,8 @@
   <title>Tabmania - Saved tabs</title>
 </head>
 <body>
-  <div id="app" v-cloak>
-    <div class="sidenav sidenav-fixed blue-grey darken-4 grey-text text-lighten-2"><img id="logo" src="img/logo.png" alt="Tabmaina">
+  <div id="app" v-cloak :class="{'dark' : state.darktheme}">
+    <div class="sidenav sidenav-fixed" :class="{'dark' : state.darktheme}"><img id="logo" src="img/logo.png" alt="Tabmaina">
       <div id="search-wrapper">
         <input class="white-text" v-model="search" placeholder="Search title..."><i class="material-icons right">search</i>
       </div>
@@ -22,10 +22,10 @@
         </div>
         <draggable v-model="state.groups" handle=".handle"> 
           <div class="clickable" v-for="group in state.groups" @click="scrollto(group.id)"><img class="handle" src="img/drag_sidenav.png" alt="">
-            <h6 class="item" :data-id="group.id" :class="{'drop-container':inDrag}" @dragover.prevent="" @drop="moveTab" @dragenter="highlight" @dragleave="removeHighlight">{{group.title || 'Untitled'}}</h6>
+            <h6 class="item" :data-id="group.id" :class="{'drop-container':inDrag, 'dark' : state.darktheme}" @dragover.prevent="" @drop="moveTab" @dragenter="highlight" @dragleave="removeHighlight">{{group.title || 'Untitled'}}</h6>
           </div>
         </draggable>
-        <h6 class="item clickable center" :data-id="0" :class="{'drop-container':inDrag}" @dragover.prevent="" @drop="moveTabNewGroup" @dragenter="highlight" @dragleave="removeHighlight" v-if="inDrag">NEW GROUP</h6>
+        <h6 class="item clickable center" :data-id="0" :class="{'drop-container':inDrag, 'dark' : state.darktheme}" @dragover.prevent="" @drop="moveTabNewGroup" @dragenter="highlight" @dragleave="removeHighlight" v-if="inDrag">NEW GROUP</h6>
       </div>
       <div class="section" id="tags">
         <h5 class="white-text unselectable title">TAGS</h5>
@@ -43,7 +43,7 @@
       <div class="right-container right">
         <div class="switch">
           <label><i class="material-icons tiny grey-text text-lighten-2">brightness_low</i>
-            <input type="checkbox"><span class="lever"></span><i class="material-icons tiny grey-text text-lighten-2">brightness_4</i>
+            <input type="checkbox" v-model="state.darktheme"><span class="lever"></span><i class="material-icons tiny grey-text text-lighten-2">brightness_4</i>
           </label>
         </div><i class="material-icons settings">settings</i>
       </div>
@@ -72,7 +72,7 @@
         <div class="divider"></div>
       </div>
       <draggable v-model="state.groups" handle=".group-handle">
-        <div class="group" :class="{'selected-group' : merge.includes(group.id)}" v-for="group in filteredGroups" :data-id="group.id">
+        <div class="group" :class="{'selected-group' : merge.includes(group.id), 'dark' : state.darktheme}" v-for="group in filteredGroups" :data-id="group.id">
           <div class="valign-wrapper header"><img class="group-handle" src="img/drag_group.png" alt="">
             <input class="browser-default editor" v-model="group.title" :placeholder="group.title" v-if="updateGroupID == group.id" @keyup.enter="updateGroupID = ''" @blur="updateGroupID = ''" v-focus v-resizable type="text" maxlength="30">
             <h5 class="unselectable" @dblclick="updateGroupID = group.id" v-else="">{{group.title}}</h5><i class="tiny material-icons edit" @click="updateGroupID = group.id">edit</i><a class="selectbtn waves-effect waves-light btn-small orange lighten-2" @click="addToMerge($event, group.id)">Select</a>
@@ -95,7 +95,7 @@
           </div>
           <div id="tabs">
             <draggable v-model="group.tabs" group="session" handle=".tab-handle" @start="saveID" @end="endDrag">
-              <div class="valign-wrapper tab unselectable" v-for="tab in filteredTabs(group.tabs)" :data-id="tab.id"><i class="material-icons hidden red-text" @click="deleteTab(group.id, tab.id)">highlight_off</i><i class="material-icons yellow-text text-darken-2" @click="starTab(group.id, tab.id)" v-if="tab.starred">star</i><i class="material-icons hidden yellow-text text-darken-2" @click="starTab(group.id, tab.id)" v-else>star_border</i><img class="tab-handle" src="img/drag_tab.png" alt=""><img class="favicon" :src="getFavicon(tab)">
+              <div class="valign-wrapper tab unselectable" v-for="tab in filteredTabs(group.tabs)" :data-id="tab.id"><i class="material-icons hidden red-text" @click="deleteTab(group.id, tab.id)">highlight_off</i><i class="material-icons yellow-text text-darken-2" @click="starTab(group.id, tab.id)" v-if="tab.starred">star</i><i class="material-icons hidden yellow-text text-darken-2" @click="starTab(group.id, tab.id)" v-else>star_border</i><img class="tab-handle" :src="state.darktheme ? 'img/drag_tab_dark.png' : 'img/drag_tab.png'" alt=""><img class="favicon" :src="getFavicon(tab)">
                 <label class="checkbox default-browser">
                   <input type="checkbox" v-model="tab.checked"><span></span>
                 </label><a @click="checkTab(tab)" :class="{&quot;checked&quot;: tab.checked}" :href="tab.url" target="_blank">{{tab.title}}</a>

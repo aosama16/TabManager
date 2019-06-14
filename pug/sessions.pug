@@ -3,8 +3,8 @@ html(lang="en")
 
 include partials/header
 body
-  #app(v-cloak)
-    .sidenav.sidenav-fixed.blue-grey.darken-4.grey-text.text-lighten-2
+  #app(v-cloak :class="{'dark' : state.darktheme}")
+    .sidenav.sidenav-fixed(:class="{'dark' : state.darktheme}")
       include partials/sidenav
     include partials/topbar
     .main

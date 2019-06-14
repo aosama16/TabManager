@@ -4,7 +4,7 @@
             i.material-icons.hidden.red-text(@click='deleteTab(group.id, tab.id)') highlight_off
             i.material-icons.yellow-text.text-darken-2(@click='starTab(group.id, tab.id)', v-if='tab.starred') star
             i.material-icons.hidden.yellow-text.text-darken-2(@click='starTab(group.id, tab.id)', v-else) star_border
-            img.tab-handle(src="img/drag_tab.png", alt="")
+            img.tab-handle(:src="state.darktheme ? 'img/drag_tab_dark.png' : 'img/drag_tab.png'", alt="")
             img.favicon(:src='getFavicon(tab)')
             label.checkbox.default-browser
                 input(type='checkbox', v-model='tab.checked')

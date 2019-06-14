@@ -15,13 +15,13 @@ img#logo(src="img/logo.png", alt="Tabmaina")
                     @click='scrollto(group.id)')
             img.handle(src="img/drag_sidenav.png", alt="")
             h6.item(:data-id='group.id', 
-                :class="{'drop-container':inDrag}", 
+                :class="{'drop-container':inDrag, 'dark' : state.darktheme}", 
                 @dragover.prevent='', 
                 @drop='moveTab', 
                 @dragenter='highlight', 
                 @dragleave='removeHighlight') {{group.title || 'Untitled'}}
     h6.item.clickable.center(:data-id='0', 
-        :class="{'drop-container':inDrag}", 
+        :class="{'drop-container':inDrag, 'dark' : state.darktheme}", 
         @dragover.prevent='', 
         @drop='moveTabNewGroup', 
         @dragenter='highlight', 

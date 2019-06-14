@@ -64,7 +64,8 @@ class Utils {
 Utils.defaultEmptyState = {
     state: {
         groups: [],
-        tags: []
+        tags: [],
+        darktheme: false
     },
     merge:[],
     mergeTitle:'',
@@ -75,5 +76,5 @@ Utils.defaultEmptyState = {
     inDrag: false,
     selectedTags: [],
     filter: '',
-    search: ''
+    search: '',
 }

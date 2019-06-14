@@ -70,12 +70,10 @@ let app = new Vue({
         highlight(event){
             if(this.inDrag){
                 event.target.style.background = '#546e7a';
-                event.target.style.color = 'white';
             }
         },
         removeHighlight(event){
             event.target.style.background = '';
-            event.target.style.color = '';
         },
         moveTab(event){
             var self = this; // Binding this to the function in set timout

@@ -2,6 +2,8 @@
     $item-font-size: 0.8rem;
     $title-font-size: $item-font-size *1.5;
     transform: translateX(0%) !important;
+    background-color: #263238 !important;
+    color: #e8e8e8;
     padding: 50px 20px;
     width: 250px !important;
     z-index: 999 !important;
@@ -78,6 +80,9 @@
         
         .drop-container{
             background-color: #455a64;
+            &.dark{
+                background-color: #cecece;
+            }
         }
         
         img.handle {
