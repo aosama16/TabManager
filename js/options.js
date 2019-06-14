@@ -3,7 +3,8 @@ let app = new Vue({
   data: {
     options: {
       silentdelete : false,
-      popupmenu: true
+      popupmenu: true,
+      deleteemptygroup: false
     }
   },
   mounted(){
