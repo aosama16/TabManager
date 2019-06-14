@@ -45,7 +45,7 @@
           <label><i class="material-icons tiny grey-text text-lighten-2">brightness_low</i>
             <input type="checkbox" v-model="state.darktheme"><span class="lever"></span><i class="material-icons tiny grey-text text-lighten-2">brightness_4</i>
           </label>
-        </div><i class="material-icons settings">settings</i>
+        </div><i class="material-icons settings" @click="openOptionsPage">settings</i>
       </div>
       <div class="left-container"><span class="tag" v-if="selectedTags.length != 0"><span class="unselectable">{{selectedTag}}</span><i class="material-icons tiny white-text" @click="clearSelectedTags">close</i></span><span class="search" v-if="search.length != 0"> <span>Search results for "{{search}}"</span><i class="material-icons tiny white-text" @click="clearSearchText">close</i></span></div>
     </div>

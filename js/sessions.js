@@ -298,6 +298,9 @@ let app = new Vue({
         },
         checkTab(tab){
             tab.checked = true;
+        },
+        openOptionsPage(){
+            chrome.tabs.create({ active: true, url: chrome.runtime.getURL('options.html') });
         }
     },
     computed: {

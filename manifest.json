@@ -4,6 +4,7 @@
     "description": "Manage your tabs and get work done",
     "manifest_version": 2,
     "permissions": ["storage", "tabs"],
+    "options_page": "options.html",
     "browser_action": {
         "default_popup": "popup.html"
     },

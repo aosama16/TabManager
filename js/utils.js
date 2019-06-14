@@ -22,6 +22,23 @@ class Utils {
         });
     }
 
+    static async getOptions() {
+        return new Promise((resolve, reject) => {
+            chrome.storage.local.get(['options'], (data) => {
+                data = data.options;
+                resolve(data);
+            });
+        });
+    }
+
+    static async setOptions(options) {
+        return new Promise((resolve, reject) => {
+            chrome.storage.local.set({'options': options}, () => {
+                resolve();
+            });
+        });
+    }
+
     static async queryTabs(options){
         return new Promise((resolve, reject) => {
             chrome.tabs.query(options, (tabs) => {

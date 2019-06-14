@@ -1,0 +1,26 @@
+html {
+  background-color: #263238;
+}
+
+.container {
+  background-color: #e8e8e8;
+  margin-top: 20px !important;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+h4 {
+  margin-bottom: 40px !important;
+}
+
+.checkbox {
+  display: block;
+}
+
+h6 {
+  margin: 0 !important;
+}
+
+p {
+  color: #b1b1b1;
+}

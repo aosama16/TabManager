@@ -18,7 +18,7 @@ let app = new Vue({
       if (state){
           this.state = state;
       }
-  });
+    });
   },
   methods:{
       getFavicon(tab){
