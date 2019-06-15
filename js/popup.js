@@ -49,8 +49,10 @@ let app = new Vue({
           state = Utils.defaultEmptyState.state;
 
         let group = Utils.createGroup(Utils.getCurrentDate());
+        let managerURL = chrome.runtime.getURL('sessions.html');
+        let optionsURL = chrome.runtime.getURL('options.html');
         for (tab of this.openedTabs) {
-          if(tab.url != chrome.runtime.getURL('sessions.html')){
+          if(tab.url != managerURL && tab.url != optionsURL){
             group.tabs.push(Utils.createTab((tab.title || 'Untitled'), tab.url, Utils.getCurrentDate()));
           }
         }
