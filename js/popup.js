@@ -50,14 +50,19 @@ let app = new Vue({
 
         let group = Utils.createGroup(Utils.getCurrentDate());
         for (tab of this.openedTabs) {
-          // Do not save manager tab
-          group.tabs.push(Utils.createTab((tab.title || 'Untitled'), tab.url, Utils.getCurrentDate()));
+          if(tab.url != chrome.runtime.getURL('sessions.html')){
+            group.tabs.push(Utils.createTab((tab.title || 'Untitled'), tab.url, Utils.getCurrentDate()));
+          }
         }
-          
-        state.groups.unshift(group);
-        Utils.setState(state);
-
-        M.toast({html: 'Session saved!', classes: 'rounded'})
+        
+        if(group.tabs.length > 0){
+          state.groups.unshift(group);
+          Utils.setState(state);
+  
+          M.toast({html: 'Session saved!', classes: 'rounded'})
+        } else {
+          M.toast({html: 'Open some tabs first!', classes: 'rounded'})
+        }
       },
 
       openManagerPage(){
