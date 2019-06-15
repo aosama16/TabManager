@@ -15,6 +15,11 @@ let app = new Vue({
                     this.state = state;
                 }
             });
+            Utils.getOptions().then((options) => {
+                if (options){
+                    this.options = options;
+                }
+            });
         },
         getFavicon(tab){
             if(!tab.url)
@@ -31,16 +36,20 @@ let app = new Vue({
             tab.starred = !tab.starred;
         },
         deleteTab(groupID, tabID){
-            if(confirm("Do you really want to delete this tab?")){
+            if(this.options.silentdelete || confirm("Do you really want to delete this tab?")){
                 let groupIDX = this.state.groups.findIndex(group => group.id == groupID);
                 targetGroup = this.state.groups[groupIDX];
                 
                 let tabIDX = targetGroup.tabs.findIndex(tab => tab.id == tabID);
                 targetGroup.tabs.splice(tabIDX, 1);
+
+                if(this.options.deleteemptygroup && (targetGroup.tabs.length == 0)){
+                    this.deleteGroup(groupID, true);
+                }
             }
         },
         deleteGroup(groupID, silent=false){
-            if(silent || confirm("Do you really want to delete this group?")){
+            if((this.options.silentdelete || silent) || confirm("Do you really want to delete this group?")){
                 let groupIDX = this.state.groups.findIndex(group => group.id == groupID);
                 this.state.groups.splice(groupIDX, 1);
             }

@@ -1,11 +1,7 @@
 let app = new Vue({
   el: '#app',
   data: {
-    options: {
-      silentdelete : false,
-      popupmenu: true,
-      deleteemptygroup: false
-    }
+    options: Utils.defaultOption
   },
   mounted(){
     Utils.getOptions().then((options) => {

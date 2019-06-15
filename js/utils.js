@@ -78,12 +78,19 @@ class Utils {
     }
 }
 
+Utils.defaultOption = {
+    silentdelete : false,
+    popupmenu: true,
+    deleteemptygroup: false
+}
+
 Utils.defaultEmptyState = {
     state: {
         groups: [],
         tags: [],
         darktheme: false
     },
+    options: Utils.defaultOption,
     merge:[],
     mergeTitle:'',
     updateGroupID: '',

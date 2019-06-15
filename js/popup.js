@@ -3,7 +3,8 @@ let app = new Vue({
   el: '#app',
   data: {
     openedTabs:[],
-    state: Utils.defaultEmptyState.state
+    state: Utils.defaultEmptyState.state,
+    options: Utils.defaultOption
   },
   mounted(){
     // Get opened tabs
@@ -19,6 +20,21 @@ let app = new Vue({
           this.state = state;
       }
     });
+
+    Utils.getOptions()
+    .then((options) => {
+      if (options){
+          this.options = options;
+      }
+    })
+    .then(() => {
+      if(this.options.popupmenu == false){
+        this.addCurrentSession().then(() => {
+          this.openManagerPage();
+        });
+      }
+    });
+
   },
   methods:{
       getFavicon(tab){
@@ -33,8 +49,10 @@ let app = new Vue({
           state = Utils.defaultEmptyState.state;
 
         let group = Utils.createGroup(Utils.getCurrentDate());
-        for (tab of this.openedTabs) 
+        for (tab of this.openedTabs) {
+          // Do not save manager tab
           group.tabs.push(Utils.createTab((tab.title || 'Untitled'), tab.url, Utils.getCurrentDate()));
+        }
           
         state.groups.unshift(group);
         Utils.setState(state);
@@ -43,6 +61,7 @@ let app = new Vue({
       },
 
       openManagerPage(){
+        // TODO if manager page is open then close it before re openning it
         chrome.tabs.create({ active: true, url: chrome.runtime.getURL('sessions.html') });
       },
 
