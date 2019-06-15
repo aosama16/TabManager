@@ -68,8 +68,13 @@ let app = new Vue({
       },
 
       openManagerPage(){
-        // TODO if manager page is open then close it before re openning it
-        chrome.tabs.create({ active: true, url: chrome.runtime.getURL('sessions.html') });
+        let managerURL = chrome.runtime.getURL('sessions.html');
+        for(tab of this.openedTabs){
+          if(tab.url == managerURL){
+            chrome.tabs.remove(tab.id,() => {});
+          }
+        }
+        chrome.tabs.create({ active: true, url: managerURL });
       },
 
       async saveCloseSession(){
